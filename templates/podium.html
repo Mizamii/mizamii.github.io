@@ -1,0 +1,248 @@
+<!-- templates/podium.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pódio - Quiz Amigo Animal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #87CEEB, #98FB98);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .podium-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .podium-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .podium-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .podium-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .podium-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .podium-position {
+            font-weight: bold;
+            font-size: 1.8rem;
+            width: 50px;
+            text-align: center;
+        }
+        
+        .position-1 { 
+            color: gold;
+            text-shadow: 0 0 5px rgba(255,215,0,0.5);
+        }
+        
+        .position-2 { 
+            color: silver;
+            text-shadow: 0 0 5px rgba(192,192,192,0.5);
+        }
+        
+        .position-3 { 
+            color: #cd7f32;
+            text-shadow: 0 0 5px rgba(205,127,50,0.5);
+        }
+        
+        .podium-info {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 1.5rem;
+        }
+        
+        .podium-name {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #2c3e50;
+        }
+        
+        .podium-email {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .podium-score {
+            font-weight: bold;
+            font-size: 1.4rem;
+            min-width: 100px;
+            color: #2e8b57;
+        }
+        
+        .podium-time {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.2rem;
+        }
+        
+        .back-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(to right, #2e8b57, #7cbc8f);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #26734d, #6bac7e);
+        }
+        
+        .no-scores {
+            font-size: 1.3rem;
+            color: #666;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border: 2px dashed #ccc;
+        }
+        
+        .loading {
+            font-size: 1.3rem;
+            color: #2e8b57;
+            margin: 2rem 0;
+        }
+        
+        .trophy-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 768px) {
+            .podium-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .podium-info {
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            .podium-position {
+                margin-bottom: 0.5rem;
+            }
+            
+            .podium-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="podium-container">
+        <h1 class="podium-title"><span class="trophy-icon">🏆</span> Pódio</h1>
+        
+        <div id="podium-content">
+            <p class="loading">Carregando pontuações...</p>
+        </div>
+        
+        <a href="/" class="back-btn">Voltar ao Início</a>
+    </div>
+
+    <script>
+        // Carregar as pontuações do servidor
+        async function loadScores() {
+            try {
+                const response = await fetch('/api/scores');
+                const scores = await response.json();
+                
+                const podiumContent = document.getElementById('podium-content');
+                
+                if (scores.length === 0) {
+                    podiumContent.innerHTML = '<p class="no-scores">Nenhuma pontuação ainda. Seja o primeiro a jogar e aparecer aqui! 🎮</p>';
+                    return;
+                }
+                
+                let html = '<ul class="podium-list">';
+                
+                scores.forEach((score, index) => {
+                    const positionClass = index === 0 ? 'position-1' : 
+                                        index === 1 ? 'position-2' : 
+                                        index === 2 ? 'position-3' : '';
+                    
+                    // Formatar o tempo para exibição
+                    const minutes = Math.floor(score.time_taken / 60);
+                    const seconds = score.time_taken % 60;
+                    const timeFormatted = `${minutes > 0 ? minutes + 'm ' : ''}${seconds}s`;
+                    
+                    html += `
+                        <li class="podium-item">
+                            <span class="podium-position ${positionClass}">${index + 1}º</span>
+                            <div class="podium-info">
+                                <div class="podium-name">${score.name}</div>
+                                <div class="podium-email">${score.email}</div>
+                            </div>
+                            <div>
+                                <div class="podium-score">${score.score} pts</div>
+                                <div class="podium-time">${timeFormatted}</div>
+                            </div>
+                        </li>
+                    `;
+                });
+                
+                html += '</ul>';
+                podiumContent.innerHTML = html;
+            } catch (error) {
+                console.error('Erro ao carregar pontuações:', error);
+                document.getElementById('podium-content').innerHTML = '<p class="no-scores">Erro ao carregar pontuações. Tente novamente mais tarde.</p>';
+            }
+        }
+        
+        // Carregar as pontuações quando a página for carregada
+        window.addEventListener('DOMContentLoaded', loadScores);
+    </script>
+</body>
+</html>
