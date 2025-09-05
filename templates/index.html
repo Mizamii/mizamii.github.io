@@ -30,15 +30,41 @@
             </button>
         </div>
         
-          <!-- Botão Arduino na tela inicial -->
-           <div class="controls initial-controls">
+        <!-- Botão Arduino na tela inicial -->
+        <div class="controls initial-controls">
             <button id="connect-btn" class="arduino-btn">
                 <span>🎮 Conectar Arduino</span>
             </button>
             <!-- Adicionar este botão -->
             <a href="/podium" class="arduino-btn" style="text-decoration: none;">
-                 <span>🏆 Ver Pódio</span>
+                <span>🏆 Ver Pódio</span>
             </a>
+        </div>
+    </div>
+
+    <!-- Tela de Seleção de Dificuldade -->
+    <div id="difficulty-selection" class="screen selection-screen forest-theme" style="display:none">
+        <div class="forest-background">
+            <div class="tree tree-left"></div>
+            <div class="tree tree-right"></div>
+            <div class="bush bush-1"></div>
+            <div class="bush bush-2"></div>
+        </div>
+        
+        <h1 class="title">ESCOLHA A DIFICULDADE</h1>
+        <div class="difficulty-options">
+            <button class="difficulty-btn easy-btn" onclick="selectDifficulty('easy')">
+                <span>Fácil</span>
+                <p>Perguntas simples para iniciantes</p>
+            </button>
+            <button class="difficulty-btn medium-btn" onclick="selectDifficulty('medium')">
+                <span>Médio</span>
+                <p>Desafio moderado</p>
+            </button>
+            <button class="difficulty-btn hard-btn" onclick="selectDifficulty('hard')">
+                <span>Difícil</span>
+                <p>Para os experts em conhecimento</p>
+            </button>
         </div>
     </div>
 
