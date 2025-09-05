@@ -15,16 +15,6 @@ const questions = {
             question: "Quem pintou a Mona Lisa?",
             correctAnswer: "Leonardo da Vinci",
             incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet"]
-        },
-        {
-            question: "Quantos planetas existem no sistema solar?",
-            correctAnswer: "8",
-            incorrectOptions: ["7", "9", "10"]
-        },
-        {
-            question: "Qual é o maior mamífero do mundo?",
-            correctAnswer: "Baleia-azul",
-            incorrectOptions: ["Elefante", "Girafa", "Hipopótamo"]
         }
     ],
     multiplayer: [
@@ -37,27 +27,9 @@ const questions = {
             question: "Brasília é a capital do Brasil?",
             correctAnswer: "Sim",
             incorrectOptions: ["Não"]
-        },
-        {
-            question: "A Terra é plana?",
-            correctAnswer: "Não",
-            incorrectOptions: ["Sim"]
-        },
-        {
-            question: "O sol é uma estrela?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"]
-        },
-        {
-            question: "Python é uma linguagem de programação?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"]
         }
     ]
 };
-
-// UUID padrão para SPP Bluetooth
-const BLUETOOTH_SERVICE_UUID = '00001101-0000-1000-8000-00805f9b34fb';
 
 // Estado do Jogo
 const gameState = {
@@ -71,11 +43,12 @@ const gameState = {
     timeLeft: 10,
     port: null,
     reader: null,
-    bluetooth: null,
-    bluetoothPolling: null,
-    answerLock: false,
-    multiplayerAnswered: { team1: false, team2: false },
-    firstAnswerTeam: null
+    answerLock: false, // Bloqueio para evitar múltiplas respostas
+    multiplayerAnswered: { team1: false, team2: false }, // Controle de respostas no multiplayer
+    firstAnswerTeam: null, // Armazena qual time respondeu primeiro
+    questionStartTime: 0, // Timestamp de quando a pergunta foi exibida
+    totalTimeTaken: 0, // Tempo total gasto nas respostas
+    showSaveScoreDialog: false // Controla se deve mostrar o diálogo de salvar pontuação
 };
 
 // Elementos DOM
@@ -110,16 +83,16 @@ const animalImages = {
 // Mapeamento dos botões do Arduino
 const ARDUINO_BUTTONS = {
     SINGLEPLAYER: {
-        OPTION_A: 4, // Pino 4 - Opção A
-        OPTION_B: 5, // Pino 5 - Opção B
-        OPTION_C: 6, // Pino 6 - Opção C
-        OPTION_D: 7  // Pino 7 - Opção D
+        OPTION_A: 2, // Pino 2 - Opção A
+        OPTION_B: 3, // Pino 3 - Opção B
+        OPTION_C: 4, // Pino 4 - Opção C
+        OPTION_D: 5  // Pino 5 - Opção D
     },
     MULTIPLAYER: {
-        TEAM1_A: 4,  // Pino 4 - Time 1, Opção A
-        TEAM1_B: 6,  // Pino 6 - Time 1, Opção B
-        TEAM2_A: 5,  // Pino 5 - Time 2, Opção A
-        TEAM2_B: 7   // Pino 7 - Time 2, Opção B
+        TEAM1_A: 2,  // Pino 2 - Time 1, Opção A
+        TEAM1_B: 4,  // Pino 4 - Time 1, Opção B
+        TEAM2_A: 3,  // Pino 3 - Time 2, Opção A
+        TEAM2_B: 5   // Pino 5 - Time 2, Opção B
     }
 };
 
@@ -132,7 +105,7 @@ function init() {
         });
     });
     
-    // Event listeners para as telas
+    // Event listeners para as novas telas
     elements.continueBtn.addEventListener('click', showAnimalSelection);
     elements.startGameBtn.addEventListener('click', startGame);
     elements.connectBtn.addEventListener('click', connectArduino);
@@ -158,7 +131,7 @@ function showStory() {
     elements.storyScreen.style.display = 'flex';
     
     // Texto da história com efeito de digitação
-    const story = "Você estava andando pelo parque quando encontrou um animal machucado precisando de ajuda. Para curá-lo, você precisa responder corretamente às perguntas que surgirão no caminho. Cada resposta correta é um cuidado para o animal!";
+    const story = "Você estava andando pelo parque e viu...";
     typeText(elements.storyText, story, () => {
         elements.continueBtn.style.display = 'block';
     });
@@ -204,15 +177,7 @@ function showMission(animal) {
 // Configuração Multiplayer
 function setupMultiplayer() {
     gameState.animal = { team1: 'cat', team2: 'dog' };
-    showMultiplayerMission();
-}
-
-// Mostrar missão multiplayer
-function showMultiplayerMission() {
-    elements.modeSelection.style.display = 'none';
-    elements.missionScreen.style.display = 'flex';
-    
-    elements.missionText.textContent = "Modo Duelo Animal! Dois times competirão para ver quem sabe mais sobre animais e natureza. O Time Gato versus Time Cachorro! Cada resposta correta vale um ponto.";
+    startGame();
 }
 
 // Inicia o Jogo
@@ -224,6 +189,8 @@ function startGame() {
     gameState.answerLock = false;
     gameState.multiplayerAnswered = { team1: false, team2: false };
     gameState.firstAnswerTeam = null;
+    gameState.totalTimeTaken = 0;
+    gameState.showSaveScoreDialog = false;
     
     if (gameState.mode === 'singleplayer') {
         elements.gameContainer.className = `singleplayer ${gameState.animal}-theme`;
@@ -266,6 +233,9 @@ function showQuestion() {
     gameState.multiplayerAnswered = { team1: false, team2: false };
     gameState.firstAnswerTeam = null;
     
+    // Registrar o tempo de início da pergunta
+    gameState.questionStartTime = Date.now();
+    
     const currentQuestion = gameState.questions[gameState.currentQuestionIndex];
     gameState.currentQuestion = currentQuestion;
     elements.question.textContent = currentQuestion.question;
@@ -294,7 +264,7 @@ function showQuestion() {
     elements.optionsContainer.style.gridTemplateColumns = 
         gameState.mode === 'multiplayer' ? '1fr' : '1fr 1fr';
     
-    startTimer(15);
+    startTimer(10);
 }
 
 // Função para embaralhar array
@@ -309,17 +279,24 @@ function shuffleArray(array) {
 function checkAnswer(isCorrect, team = null) {
     if (gameState.answerLock) return; // Evita múltiplas respostas
     
+    // Calcular o tempo gasto para responder
+    const timeTaken = (Date.now() - gameState.questionStartTime) / 1000; // em segundos
+    gameState.totalTimeTaken += timeTaken;
+    
     clearInterval(gameState.timer);
     gameState.answerLock = true; // Bloqueia outras respostas
     
+    // Sistema de pontuação baseado no tempo (apenas singleplayer)
+    let pointsEarned = 0;
+    
     if (gameState.mode === 'singleplayer') {
         if (isCorrect) {
-            gameState.scores.player++;
-            elements.status.textContent = "✅ Resposta correta! +1 cuidado para o animal";
-            elements.status.style.color = "green";
+            // Quanto mais rápido, mais pontos (máximo 1000, mínimo 100)
+            pointsEarned = Math.max(100, 1000 - Math.floor(timeTaken * 100));
+            gameState.scores.player += pointsEarned;
+            elements.status.textContent = `✅ Resposta correta! +${pointsEarned} pontos (${timeTaken.toFixed(1)}s)`;
         } else {
             elements.status.textContent = "❌ Resposta incorreta!";
-            elements.status.style.color = "red";
         }
     } else {
         // Modo multiplayer - apenas a primeira resposta conta
@@ -331,22 +308,18 @@ function checkAnswer(isCorrect, team = null) {
                 if (team === 'team1') {
                     gameState.scores.team1++;
                     elements.status.textContent = "✅ Time Gato acertou primeiro! +1 ponto";
-                    elements.status.style.color = "green";
                 } else if (team === 'team2') {
                     gameState.scores.team2++;
                     elements.status.textContent = "✅ Time Cachorro acertou primeiro! +1 ponto";
-                    elements.status.style.color = "green";
                 }
             } else {
                 // Time que respondeu primeiro errou - ponto vai para o outro time
                 if (team === 'team1') {
                     gameState.scores.team2++;
                     elements.status.textContent = "❌ Time Gato errou! Ponto para Time Cachorro";
-                    elements.status.style.color = "red";
                 } else if (team === 'team2') {
                     gameState.scores.team1++;
                     elements.status.textContent = "❌ Time Cachorro errou! Ponto para Time Gato";
-                    elements.status.style.color = "red";
                 }
             }
         }
@@ -357,7 +330,7 @@ function checkAnswer(isCorrect, team = null) {
     setTimeout(() => {
         gameState.currentQuestionIndex++;
         showQuestion();
-    }, 2000);
+    }, 1500);
 }
 
 // Atualiza o placar
@@ -383,7 +356,6 @@ function startTimer(seconds) {
         if (gameState.timeLeft <= 0) {
             clearInterval(gameState.timer);
             elements.status.textContent = "⏰ Tempo esgotado!";
-            elements.status.style.color = "orange";
             gameState.currentQuestionIndex++;
             setTimeout(showQuestion, 1500);
         }
@@ -392,101 +364,94 @@ function startTimer(seconds) {
 
 function updateTimer() {
     elements.timer.textContent = gameState.timeLeft;
-    
-    // Mudar cor do timer conforme o tempo passa
-    if (gameState.timeLeft <= 5) {
-        elements.timer.style.color = "red";
-    } else if (gameState.timeLeft <= 10) {
-        elements.timer.style.color = "orange";
-    } else {
-        elements.timer.style.color = "black";
-    }
 }
 
 // Final do jogo
 function endGame() {
     elements.question.textContent = "🏁 Fim do jogo!";
     elements.optionsContainer.innerHTML = '';
-    elements.status.style.color = "blue";
     
     if (gameState.mode === 'singleplayer') {
-        let message;
-        const percentage = (gameState.scores.player / gameState.questions.length) * 100;
+        elements.status.textContent = `🎉 Você fez ${gameState.scores.player} pontos em ${gameState.totalTimeTaken.toFixed(1)} segundos!`;
         
-        if (percentage >= 80) {
-            message = `🎉 Excelente! Você acertou ${gameState.scores.player} de ${gameState.questions.length} perguntas! O animal está curado!`;
-        } else if (percentage >= 60) {
-            message = `👍 Bom trabalho! Você acertou ${gameState.scores.player} de ${gameState.questions.length} perguntas! O animal está melhor.`;
-        } else {
-            message = `😔 Você acertou ${gameState.scores.player} de ${gameState.questions.length} perguntas. Tente novamente para ajudar o animal.`;
-        }
-        
-        elements.status.textContent = message;
+        // Mostrar opção para salvar pontuação
+        setTimeout(() => {
+            showSaveScoreDialog();
+        }, 2000);
     } else {
-        let message;
-        if (gameState.scores.team1 > gameState.scores.team2) {
-            message = `🏆 Time Gato venceu! Placar: ${gameState.scores.team1} x ${gameState.scores.team2}`;
-        } else if (gameState.scores.team2 > gameState.scores.team1) {
-            message = `🏆 Time Cachorro venceu! Placar: ${gameState.scores.team1} x ${gameState.scores.team2}`;
-        } else {
-            message = `🤝 Empate! Placar: ${gameState.scores.team1} x ${gameState.scores.team2}`;
-        }
-        
-        elements.status.textContent = message;
+        elements.status.textContent = `🏆 Placar final: Gato ${gameState.scores.team1} x ${gameState.scores.team2} Cachorro`;
     }
-    
-    // Botão para reiniciar
-    const restartButton = document.createElement('button');
-    restartButton.textContent = 'Jogar Novamente';
-    restartButton.className = 'restart-btn';
-    restartButton.onclick = () => {
-        window.location.reload();
-    };
-    elements.optionsContainer.appendChild(restartButton);
 }
 
-// Função para lidar com dados recebidos via Bluetooth
-function handleBluetoothData(event) {
+// Mostrar diálogo de salvar pontuação
+function showSaveScoreDialog() {
+    gameState.showSaveScoreDialog = true;
+    
+    const dialogHTML = `
+        <div style="text-align: center; margin-top: 2rem;">
+            <h3>Deseja salvar sua pontuação?</h3>
+            <div id="score-form" style="display: none; margin: 1rem 0;">
+                <input type="text" id="player-name" placeholder="Seu nome" style="padding: 0.5rem; margin: 0.5rem; border-radius: 5px; border: 1px solid #ccc;">
+                <input type="email" id="player-email" placeholder="Seu email" style="padding: 0.5rem; margin: 0.5rem; border-radius: 5px; border: 1px solid #ccc;">
+                <button onclick="saveScore()" style="padding: 0.5rem 1rem; background: #2e8b57; color: white; border: none; border-radius: 5px; cursor: pointer;">Salvar</button>
+            </div>
+            <div>
+                <button onclick="document.getElementById('score-form').style.display = 'block'; this.style.display = 'none'" 
+                        style="padding: 0.8rem 1.5rem; margin: 0.5rem; background: #2e8b57; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Sim
+                </button>
+                <button onclick="gameState.showSaveScoreDialog = false; elements.status.textContent = 'Pontuação não salva.'" 
+                        style="padding: 0.8rem 1.5rem; margin: 0.5rem; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Não
+                </button>
+            </div>
+        </div>
+    `;
+    
+    elements.status.innerHTML += dialogHTML;
+}
+
+// Salvar pontuação no servidor
+async function saveScore() {
+    const name = document.getElementById('player-name').value.trim();
+    const email = document.getElementById('player-email').value.trim();
+    
+    if (!name || !email) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+    
     try {
-        const value = event.target.value;
-        // Converter os dados recebidos para string
-        const decoder = new TextDecoder();
-        const data = decoder.decode(value).trim();
+        const response = await fetch('/api/scores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                score: gameState.scores.player,
+                time_taken: Math.floor(gameState.totalTimeTaken)
+            })
+        });
         
-        console.log("Dados recebidos via Bluetooth:", data);
+        const result = await response.json();
         
-        // Processar cada linha recebida
-        if (data) {
-            data.split('\n').forEach(line => {
-                const buttonPress = line.trim();
-                if (buttonPress) {
-                    handleButtonPress(parseInt(buttonPress));
-                }
-            });
+        if (result.success) {
+            elements.status.innerHTML += '<p>Pontuação salva com sucesso! 🎉</p>';
+        } else {
+            elements.status.innerHTML += '<p>Erro ao salvar pontuação. 😢</p>';
         }
     } catch (error) {
-        console.error("Erro ao processar dados Bluetooth:", error);
-    }
-}
-
-// Função chamada quando a conexão Bluetooth é perdida
-function onBluetoothDisconnected() {
-    elements.status.textContent = "⚠️ Conexão Bluetooth perdida";
-    elements.connectBtn.innerHTML = '<span>🎮 Conectar Arduino</span>';
-    elements.connectBtn.disabled = false;
-    
-    if (gameState.bluetoothPolling) {
-        clearInterval(gameState.bluetoothPolling);
-        gameState.bluetoothPolling = null;
+        console.error('Erro ao salvar pontuação:', error);
+        elements.status.innerHTML += '<p>Erro ao salvar pontuação. 😢</p>';
     }
     
-    if (gameState.bluetooth) {
-        gameState.bluetooth = null;
-    }
+    gameState.showSaveScoreDialog = false;
 }
 
-// Conexão Serial (USB)
-async function connectSerial() {
+// Arduino
+async function connectArduino() {
     try {
         if (!navigator.serial) {
             elements.status.textContent = "⚠️ Seu navegador não suporta WebSerial API";
@@ -495,176 +460,15 @@ async function connectSerial() {
         
         gameState.port = await navigator.serial.requestPort();
         await gameState.port.open({ baudRate: 9600 });
-        elements.connectBtn.innerHTML = '<span>🎮 Conectado Serial</span>';
+        elements.connectBtn.innerHTML = '<span>🎮 Conectado</span>';
         elements.connectBtn.disabled = true;
-        elements.status.textContent = "✅ Conectado via USB Serial!";
         listenToArduino();
     } catch (err) {
-        elements.status.textContent = "⚠️ Erro na conexão serial com Arduino";
-        elements.connectBtn.disabled = false;
+        elements.status.textContent = "⚠️ Erro na conexão com Arduino";
         console.error(err);
     }
 }
 
-// Conexão Bluetooth - Versão melhorada
-async function connectBluetooth() {
-    try {
-        if (!navigator.bluetooth) {
-            elements.status.textContent = "⚠️ Seu navegador não suporta WebBluetooth API. Use Chrome ou Edge.";
-            return;
-        }
-        
-        elements.status.textContent = "🔍 Procurando dispositivo Bluetooth...";
-        elements.connectBtn.disabled = true;
-        
-        // Adicionar mais opções de filtro para dispositivos Bluetooth
-        const device = await navigator.bluetooth.requestDevice({
-            filters: [
-                { name: 'HC-05' },
-                { name: 'HC-06' },
-                { namePrefix: 'HC-' }, // Prefixo comum para módulos HC
-                { services: [BLUETOOTH_SERVICE_UUID] } // Procurar por serviços SPP
-            ],
-            optionalServices: [BLUETOOTH_SERVICE_UUID]
-        }).catch(error => {
-            elements.status.textContent = "❌ Nenhum dispositivo selecionado ou encontrado";
-            elements.connectBtn.disabled = false;
-            console.error("Erro ao solicitar dispositivo:", error);
-            throw error;
-        });
-        
-        if (!device) {
-            elements.connectBtn.disabled = false;
-            return;
-        }
-        
-        elements.status.textContent = "📱 Conectando ao dispositivo...";
-        
-        // Adicionar timeout para a conexão
-        const connectionTimeout = setTimeout(() => {
-            elements.status.textContent = "⚠️ Tempo esgotado na conexão. Tente novamente.";
-            elements.connectBtn.disabled = false;
-        }, 15000); // 15 segundos timeout
-        
-        // Conectar ao servidor GATT
-        const server = await device.gatt.connect();
-        clearTimeout(connectionTimeout);
-        
-        elements.status.textContent = "✅ Conectado! Obtendo serviços...";
-        
-        // Obter o serviço
-        const service = await server.getPrimaryService(BLUETOOTH_SERVICE_UUID);
-        
-        // Obter características para leitura e escrita
-        const characteristics = await service.getCharacteristics();
-        
-        // Encontrar a característica para receber dados
-        let readCharacteristic = null;
-        for (const char of characteristics) {
-            // Priorizar características com notificação
-            if (char.properties.notify) {
-                readCharacteristic = char;
-                break;
-            }
-        }
-        
-        // Se não encontrou notificação, procurar indicação
-        if (!readCharacteristic) {
-            for (const char of characteristics) {
-                if (char.properties.indicate) {
-                    readCharacteristic = char;
-                    break;
-                }
-            }
-        }
-        
-        // Se ainda não encontrou, usar a primeira característica disponível
-        if (!readCharacteristic && characteristics.length > 0) {
-            readCharacteristic = characteristics[0];
-        }
-        
-        if (!readCharacteristic) {
-            throw new Error("Nenhuma característica adequada encontrada");
-        }
-        
-        // Configurar notificações se suportado
-        if (readCharacteristic.properties.notify || readCharacteristic.properties.indicate) {
-            await readCharacteristic.startNotifications();
-            readCharacteristic.addEventListener('characteristicvaluechanged', handleBluetoothData);
-        } else {
-            // Se não suportar notificações, usar polling
-            elements.status.textContent = "⚠️ Dispositivo não suporta notificações. Usando modo de verificação.";
-            startBluetoothPolling(readCharacteristic);
-        }
-        
-        // Atualizar interface
-        elements.connectBtn.innerHTML = '<span>📱 Conectado Bluetooth</span>';
-        elements.connectBtn.disabled = true;
-        elements.status.textContent = "✅ Conectado via Bluetooth!";
-        
-        // Armazenar a característica para possível uso futuro
-        gameState.bluetooth = {
-            device: device,
-            server: server,
-            characteristic: readCharacteristic,
-            supportsNotifications: (readCharacteristic.properties.notify || readCharacteristic.properties.indicate)
-        };
-        
-        // Configurar evento de desconexão
-        device.addEventListener('gattserverdisconnected', onBluetoothDisconnected);
-        
-    } catch (err) {
-        elements.status.textContent = "⚠️ Erro na conexão Bluetooth: " + err.message;
-        elements.connectBtn.disabled = false;
-        console.error("Erro detalhado:", err);
-    }
-}
-
-// Polling para dispositivos que não suportam notificações
-function startBluetoothPolling(characteristic) {
-    if (gameState.bluetoothPolling) {
-        clearInterval(gameState.bluetoothPolling);
-    }
-    
-    gameState.bluetoothPolling = setInterval(async () => {
-        try {
-            if (gameState.bluetooth && gameState.bluetooth.device.gatt.connected) {
-                const value = await characteristic.readValue();
-                const decoder = new TextDecoder();
-                const data = decoder.decode(value).trim();
-                
-                if (data) {
-                    console.log("Dados recebidos via polling:", data);
-                    data.split('\n').forEach(line => {
-                        const buttonPress = line.trim();
-                        if (buttonPress) {
-                            handleButtonPress(parseInt(buttonPress));
-                        }
-                    });
-                }
-            } else {
-                clearInterval(gameState.bluetoothPolling);
-                gameState.bluetoothPolling = null;
-            }
-        } catch (error) {
-            console.error("Erro no polling Bluetooth:", error);
-        }
-    }, 100); // Verificar a cada 100ms
-}
-
-// Função principal de conexão com Arduino
-async function connectArduino() {
-    // Perguntar ao usuário qual conexão deseja usar
-    const useBluetooth = confirm("Pressione OK para Bluetooth ou Cancelar para USB Serial");
-    
-    if (useBluetooth) {
-        await connectBluetooth();
-    } else {
-        await connectSerial();
-    }
-}
-
-// Escuta dados do Arduino (Serial)
 async function listenToArduino() {
     try {
         const decoder = new TextDecoder();
@@ -701,7 +505,7 @@ function handleButtonPress(buttonPin) {
     const options = elements.optionsContainer.querySelectorAll('.option-btn');
     
     if (gameState.mode === 'singleplayer') {
-        // Modo Singleplayer: botões 4,5,6,7 = A,B,C,D
+        // Modo Singleplayer: botões 2,3,4,5 = A,B,C,D
         let optionIndex = -1;
         
         switch(buttonPin) {
@@ -720,7 +524,7 @@ function handleButtonPress(buttonPin) {
         let team = null;
         let isCorrect = false;
         
-        // Time 1 (Gato) - Botões 4 e 6
+        // Time 1 (Gato) - Botões 2 e 4
         if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_A || 
             buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_B) {
             
@@ -733,7 +537,7 @@ function handleButtonPress(buttonPin) {
             isCorrect = options[selectedOption].textContent.includes(gameState.currentQuestion.correctAnswer);
             
         } 
-        // Time 2 (Cachorro) - Botões 5 e 7
+        // Time 2 (Cachorro) - Botões 3 e 5
         else if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_A || 
                  buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_B) {
             
@@ -761,13 +565,6 @@ window.addEventListener('beforeunload', async () => {
     if (gameState.port) {
         await gameState.port.close();
     }
-    if (gameState.bluetooth && gameState.bluetooth.device.gatt.connected) {
-        gameState.bluetooth.device.gatt.disconnect();
-    }
-    if (gameState.bluetoothPolling) {
-        clearInterval(gameState.bluetoothPolling);
-    }
 });
 
-// Inicializar o jogo quando a página carregar
-window.addEventListener('load', init);
+init();
