@@ -1,4 +1,4 @@
-<!-- templates/podium.html -->
+<!-- templates/podio.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -100,6 +100,13 @@
         .podium-email {
             font-size: 1rem;
             color: #666;
+        }
+        
+        .podium-difficulty {
+            font-size: 0.9rem;
+            color: #2e8b57;
+            font-weight: bold;
+            margin-top: 0.2rem;
         }
         
         .podium-score {
@@ -218,12 +225,22 @@
                     const seconds = score.time_taken % 60;
                     const timeFormatted = `${minutes > 0 ? minutes + 'm ' : ''}${seconds}s`;
                     
+                    // Traduzir a dificuldade
+                    let difficultyText = '';
+                    switch(score.difficulty) {
+                        case 'easy': difficultyText = 'Fácil'; break;
+                        case 'medium': difficultyText = 'Médio'; break;
+                        case 'hard': difficultyText = 'Difícil'; break;
+                        default: difficultyText = score.difficulty;
+                    }
+                    
                     html += `
                         <li class="podium-item">
                             <span class="podium-position ${positionClass}">${index + 1}º</span>
                             <div class="podium-info">
                                 <div class="podium-name">${score.name}</div>
                                 <div class="podium-email">${score.email}</div>
+                                <div class="podium-difficulty">Dificuldade: ${difficultyText}</div>
                             </div>
                             <div>
                                 <div class="podium-score">${score.score} pts</div>
