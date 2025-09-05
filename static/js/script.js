@@ -1,32 +1,133 @@
-// Banco de Perguntas Ampliado
+// Banco de Perguntas Ampliado com Dificuldade
 const questions = {
-    singleplayer: [
-        {
-            question: "Qual o nome do cachorro?",
-            correctAnswer: "Carla",
-            incorrectOptions: ["Rodrigo", "Luis", "Gorila"]
-        },
-        {
-            question: "Qual é a capital do Brasil?",
-            correctAnswer: "Brasília",
-            incorrectOptions: ["Rio de Janeiro", "São Paulo", "Salvador"]
-        },
-        {
-            question: "Quem pintou a Mona Lisa?",
-            correctAnswer: "Leonardo da Vinci",
-            incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet"]
-        }
-    ],
+    singleplayer: {
+        easy: [
+            {
+                question: "Qual o nome do cachorro?",
+                correctAnswer: "Carla",
+                incorrectOptions: ["Rodrigo", "Luis", "Gorila"],
+                difficulty: "easy"
+            },
+            {
+                question: "Qual é a capital do Brasil?",
+                correctAnswer: "Brasília",
+                incorrectOptions: ["Rio de Janeiro", "São Paulo", "Salvador"],
+                difficulty: "easy"
+            },
+            {
+                question: "Quantos dias tem uma semana?",
+                correctAnswer: "7",
+                incorrectOptions: ["5", "6", "8"],
+                difficulty: "easy"
+            },
+            {
+                question: "Qual é a cor do céu em um dia claro?",
+                correctAnswer: "Azul",
+                incorrectOptions: ["Verde", "Vermelho", "Amarelo"],
+                difficulty: "easy"
+            },
+            {
+                question: "Quantas patas tem um cachorro?",
+                correctAnswer: "4",
+                incorrectOptions: ["2", "6", "8"],
+                difficulty: "easy"
+            }
+        ],
+        medium: [
+            {
+                question: "Quem pintou a Mona Lisa?",
+                correctAnswer: "Leonardo da Vinci",
+                incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior planeta do sistema solar?",
+                correctAnswer: "Júpiter",
+                incorrectOptions: ["Saturno", "Terra", "Marte"],
+                difficulty: "medium"
+            },
+            {
+                question: "Em que ano o homem pisou na Lua pela primeira vez?",
+                correctAnswer: "1969",
+                incorrectOptions: ["1959", "1979", "1989"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior oceano do mundo?",
+                correctAnswer: "Oceano Pacífico",
+                incorrectOptions: ["Oceano Atlântico", "Oceano Índico", "Oceano Ártico"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quantos elementos tem a tabela periódica?",
+                correctAnswer: "118",
+                incorrectOptions: ["100", "150", "92"],
+                difficulty: "medium"
+            }
+        ],
+        hard: [
+            {
+                question: "Qual é a fórmula química da água?",
+                correctAnswer: "H₂O",
+                incorrectOptions: ["CO₂", "NaCl", "O₂"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem escreveu '1984'?",
+                correctAnswer: "George Orwell",
+                incorrectOptions: ["Aldous Huxley", "Ray Bradbury", "J.R.R. Tolkien"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a capital do Butão?",
+                correctAnswer: "Thimbu",
+                incorrectOptions: ["Katmandu", "Daca", "Islamabad"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o elemento químico com o símbolo 'Au'?",
+                correctAnswer: "Ouro",
+                incorrectOptions: ["Prata", "Alumínio", "Cobre"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem descobriu a penicilina?",
+                correctAnswer: "Alexander Fleming",
+                incorrectOptions: ["Louis Pasteur", "Marie Curie", "Robert Koch"],
+                difficulty: "hard"
+            }
+        ]
+    },
     multiplayer: [
         {
             question: "O cachorro se chama Carla?",
             correctAnswer: "Sim",
-            incorrectOptions: ["Não"]
+            incorrectOptions: ["Não"],
+            difficulty: "easy"
         },
         {
             question: "Brasília é a capital do Brasil?",
             correctAnswer: "Sim",
-            incorrectOptions: ["Não"]
+            incorrectOptions: ["Não"],
+            difficulty: "easy"
+        },
+        {
+            question: "A Terra é plana?",
+            correctAnswer: "Não",
+            incorrectOptions: ["Sim"],
+            difficulty: "easy"
+        },
+        {
+            question: "O sol é uma estrela?",
+            correctAnswer: "Sim",
+            incorrectOptions: ["Não"],
+            difficulty: "medium"
+        },
+        {
+            question: "Shakespeare escreveu Romeu e Julieta?",
+            correctAnswer: "Sim",
+            incorrectOptions: ["Não"],
+            difficulty: "medium"
         }
     ]
 };
@@ -34,6 +135,7 @@ const questions = {
 // Estado do Jogo
 const gameState = {
     mode: null,
+    difficulty: null,
     animal: null,
     questions: [],
     currentQuestionIndex: 0,
@@ -54,6 +156,7 @@ const gameState = {
 // Elementos DOM
 const elements = {
     modeSelection: document.getElementById('mode-selection'),
+    difficultySelection: document.getElementById('difficulty-selection'),
     storyScreen: document.getElementById('story-screen'),
     storyText: document.getElementById('story-text'),
     continueBtn: document.getElementById('continue-btn'),
@@ -120,13 +223,25 @@ function selectMode(mode) {
     elements.modeSelection.style.display = 'none';
     
     if (mode === 'singleplayer') {
-        showStory();
+        showDifficultySelection(); // Mostrar seleção de dificuldade
     } else {
         setupMultiplayer();
     }
 }
 
-// Mostrar história
+// Mostrar seleção de dificuldade
+function showDifficultySelection() {
+    elements.difficultySelection.style.display = 'flex';
+}
+
+// Seleção de Dificuldade
+function selectDifficulty(difficulty) {
+    gameState.difficulty = difficulty;
+    elements.difficultySelection.style.display = 'none';
+    showStory();
+}
+
+// Continuação do script.js
 function showStory() {
     elements.storyScreen.style.display = 'flex';
     
@@ -177,6 +292,7 @@ function showMission(animal) {
 // Configuração Multiplayer
 function setupMultiplayer() {
     gameState.animal = { team1: 'cat', team2: 'dog' };
+    gameState.difficulty = 'easy'; // Dificuldade padrão para multiplayer
     startGame();
 }
 
@@ -212,9 +328,17 @@ function startGame() {
     showQuestion();
 }
 
-// Carrega perguntas aleatórias
+// Carrega perguntas aleatórias baseadas na dificuldade
 function loadQuestions() {
-    const questionSet = questions[gameState.mode];
+    let questionSet;
+    
+    if (gameState.mode === 'singleplayer') {
+        // Carrega perguntas baseadas na dificuldade escolhida
+        questionSet = questions.singleplayer[gameState.difficulty];
+    } else {
+        questionSet = questions.multiplayer;
+    }
+    
     gameState.questions = [...questionSet].sort(() => Math.random() - 0.5);
     gameState.currentQuestionIndex = 0;
     gameState.scores = { team1: 0, team2: 0, player: 0 };
@@ -412,12 +536,22 @@ function showSaveScoreDialog() {
 }
 
 // Salvar pontuação no servidor
+// Salvar pontuação no servidor
+// Salvar pontuação no servidor
 async function saveScore() {
-    const name = document.getElementById('player-name').value.trim();
-    const email = document.getElementById('player-email').value.trim();
+    const nameInput = document.getElementById('player-name');
+    const emailInput = document.getElementById('player-email');
+    
+    const name = nameInput ? nameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
     
     if (!name || !email) {
         alert('Por favor, preencha todos os campos.');
+        return;
+    }
+    
+    if (!email.includes('@')) {
+        alert('Por favor, insira um email válido.');
         return;
     }
     
@@ -431,25 +565,26 @@ async function saveScore() {
                 name: name,
                 email: email,
                 score: gameState.scores.player,
-                time_taken: Math.floor(gameState.totalTimeTaken)
+                time_taken: Math.floor(gameState.totalTimeTaken),
+                difficulty: gameState.difficulty
             })
         });
         
         const result = await response.json();
         
-        if (result.success) {
-            elements.status.innerHTML += '<p>Pontuação salva com sucesso! 🎉</p>';
+        if (response.ok && result.success) {
+            elements.status.innerHTML = '<p>✅ Pontuação salva com sucesso! 🎉</p>';
         } else {
-            elements.status.innerHTML += '<p>Erro ao salvar pontuação. 😢</p>';
+            const errorMsg = result.error || 'Erro desconhecido';
+            elements.status.innerHTML = `<p>❌ Erro: ${errorMsg}</p>`;
         }
     } catch (error) {
         console.error('Erro ao salvar pontuação:', error);
-        elements.status.innerHTML += '<p>Erro ao salvar pontuação. 😢</p>';
+        elements.status.innerHTML = '<p>❌ Erro de conexão com o servidor</p>';
     }
     
     gameState.showSaveScoreDialog = false;
 }
-
 // Arduino
 async function connectArduino() {
     try {
