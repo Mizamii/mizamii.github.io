@@ -165,6 +165,77 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
+/* Estilos para seleção de dificuldade */
+.difficulty-options {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.difficulty-btn {
+    width: 200px;
+    height: 150px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--forest-green);
+    padding: 1rem;
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.difficulty-btn span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--forest-dark);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 0.5rem;
+}
+
+.difficulty-btn p {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+.easy-btn {
+    border-color: #4caf50;
+}
+
+.easy-btn:hover {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.medium-btn {
+    border-color: #ff9800;
+}
+
+.medium-btn:hover {
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.hard-btn {
+    border-color: #f44336;
+}
+
+.hard-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
 /* Telas de Narrativa e Missão */
 .story-screen, .mission-screen {
     display: flex;
@@ -538,9 +609,24 @@ body {
     box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
+/* Estilos para o formulário de pontuação */
+#score-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+#player-name, #player-email {
+    padding: 0.8rem;
+    border: 2px solid #2e8b57;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
-    .mode-options, .animal-options {
+    .mode-options, .animal-options, .difficulty-options {
         flex-direction: column;
     }
     
@@ -557,7 +643,7 @@ body {
         display: none;
     }
 }
-/* Adicionar ao style.css */
+
 .initial-controls {
     display: flex;
     gap: 1rem;
@@ -572,19 +658,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Estilos para o formulário de pontuação */
-#score-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 1rem 0;
-}
-
-#player-name, #player-email {
-    padding: 0.8rem;
-    border: 2px solid #2e8b57;
-    border-radius: 8px;
-    font-size: 1rem;
 }
