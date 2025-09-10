@@ -538,6 +538,7 @@ function showSaveScoreDialog() {
 // Salvar pontuação no servidor
 // Salvar pontuação no servidor
 // Salvar pontuação no servidor
+// script.js (atualizar a função saveScore)
 async function saveScore() {
     const nameInput = document.getElementById('player-name');
     const emailInput = document.getElementById('player-email');
