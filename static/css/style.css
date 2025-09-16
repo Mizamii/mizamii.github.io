@@ -659,3 +659,211 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* NOVOS ESTILOS PARA O PÓDIO */
+.difficulty-sections {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.difficulty-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid;
+    text-align: center;
+}
+
+.easy-title {
+    color: #4caf50;
+    border-bottom-color: #4caf50;
+}
+
+.medium-title {
+    color: #ff9800;
+    border-bottom-color: #ff9800;
+}
+
+.hard-title {
+    color: #f44336;
+    border-bottom-color: #f44336;
+}
+
+.podium-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.podium-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.podium-position {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 40px;
+    text-align: center;
+}
+
+.position-1 { color: gold; }
+.position-2 { color: silver; }
+.position-3 { color: #cd7f32; }
+
+.podium-info {
+    flex-grow: 1;
+    text-align: left;
+    padding: 0 1rem;
+}
+
+.podium-name {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.podium-team {
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.team-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.podium-score {
+    font-weight: bold;
+    min-width: 60px;
+    color: #2e8b57;
+    text-align: right;
+}
+
+.no-scores {
+    color: #666;
+    padding: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* MELHORIAS EXISTENTES */
+.initial-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.arduino-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #2e8b57, #7cbc8f);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.arduino-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* ESTILOS PARA O FORMULÁRIO DE PONTUAÇÃO */
+#score-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+#player-name, #player-email {
+    padding: 0.8rem;
+    border: 2px solid #2e8b57;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#score-form button {
+    padding: 0.5rem 1rem;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* RESPONSIVIDADE PARA O PÓDIO */
+@media (max-width: 768px) {
+    .difficulty-sections {
+        flex-direction: column;
+    }
+    
+    .difficulty-section {
+        min-width: auto;
+    }
+    
+    .podium-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .podium-info {
+        text-align: center;
+        padding: 0;
+    }
+    
+    .podium-team {
+        justify-content: center;
+    }
+}
+.next-question-btn {
+    padding: 1rem 2rem;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.next-question-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: #3da76d;
+}
