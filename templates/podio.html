@@ -1,4 +1,3 @@
-<!-- templates/podio.html (atualizado) -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,19 +16,12 @@
         body {
             background: linear-gradient(to bottom, #87CEEB, #98FB98);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
         
         .podium-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 800px;
-            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
         }
         
@@ -40,86 +32,107 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         
+        .difficulty-sections {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid;
+        }
+        
+        .easy-title {
+            color: #4caf50;
+            border-bottom-color: #4caf50;
+        }
+        
+        .medium-title {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+        }
+        
+        .hard-title {
+            color: #f44336;
+            border-bottom-color: #f44336;
+        }
+        
         .podium-list {
             list-style: none;
             padding: 0;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         
         .podium-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
-            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .podium-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .podium-position {
             font-weight: bold;
-            font-size: 1.8rem;
-            width: 50px;
+            font-size: 1.2rem;
+            width: 40px;
             text-align: center;
         }
         
-        .position-1 { 
-            color: gold;
-            text-shadow: 0 0 5px rgba(255,215,0,0.5);
-        }
-        
-        .position-2 { 
-            color: silver;
-            text-shadow: 0 0 5px rgba(192,192,192,0.5);
-        }
-        
-        .position-3 { 
-            color: #cd7f32;
-            text-shadow: 0 0 5px rgba(205,127,50,0.5);
-        }
+        .position-1 { color: gold; }
+        .position-2 { color: silver; }
+        .position-3 { color: #cd7f32; }
         
         .podium-info {
             flex-grow: 1;
             text-align: left;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
         }
         
         .podium-name {
             font-weight: bold;
-            font-size: 1.3rem;
             color: #2c3e50;
         }
         
-        .podium-email {
-            font-size: 1rem;
+        .podium-team {
+            font-size: 0.8rem;
             color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         
-        .podium-difficulty {
-            font-size: 0.9rem;
-            color: #2e8b57;
-            font-weight: bold;
-            margin-top: 0.2rem;
+        .team-icon {
+            width: 16px;
+            height: 16px;
         }
         
         .podium-score {
             font-weight: bold;
-            font-size: 1.4rem;
-            min-width: 100px;
+            min-width: 60px;
             color: #2e8b57;
         }
         
-        .podium-time {
-            font-size: 0.9rem;
-            color: #888;
-            margin-top: 0.2rem;
+        .no-scores {
+            color: #666;
+            padding: 1rem;
+            font-style: italic;
         }
         
         .back-btn {
@@ -135,55 +148,21 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
         
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            background: linear-gradient(to right, #26734d, #6bac7e);
-        }
-        
-        .no-scores {
-            font-size: 1.3rem;
-            color: #666;
-            margin: 2.5rem 0;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            border: 2px dashed #ccc;
-        }
-        
-        .loading {
-            font-size: 1.3rem;
-            color: #2e8b57;
-            margin: 2rem 0;
-        }
-        
-        .trophy-icon {
-            font-size: 2rem;
-            margin-right: 0.5rem;
-            vertical-align: middle;
         }
         
         @media (max-width: 768px) {
-            .podium-item {
+            .difficulty-sections {
                 flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
             }
             
-            .podium-info {
-                text-align: center;
-                padding: 1rem 0;
-            }
-            
-            .podium-position {
-                margin-bottom: 0.5rem;
-            }
-            
-            .podium-title {
-                font-size: 2rem;
+            .difficulty-section {
+                min-width: auto;
             }
         }
     </style>
@@ -192,74 +171,113 @@
     <div class="podium-container">
         <h1 class="podium-title"><span class="trophy-icon">🏆</span> Pódio</h1>
         
-        <div id="podium-content">
-            <p class="loading">Carregando pontuações...</p>
+        <div class="difficulty-sections">
+            <div class="difficulty-section">
+                <h2 class="section-title easy-title">Fácil</h2>
+                <div id="easy-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-section">
+                <h2 class="section-title medium-title">Médio</h2>
+                <div id="medium-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-section">
+                <h2 class="section-title hard-title">Difícil</h2>
+                <div id="hard-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
         </div>
         
         <a href="/" class="back-btn">Voltar ao Início</a>
     </div>
 
-    <script>
-        // Carregar as pontuações do servidor
+        <script>
+        // URLs das imagens dos times
+        const teamImages = {
+            cat: "https://png.pngtree.com/png-clipart/20230322/original/pngtree-black-cat-silhouette-png-image_8999326.png",
+            dog: "https://cdn.colab55.com/images/55001/studio/115533/art/238888/stickers.png"
+        };
+
+        // Função para carregar as pontuações
         async function loadScores() {
             try {
                 const response = await fetch('/api/scores');
-                const scores = await response.json();
-                
-                const podiumContent = document.getElementById('podium-content');
-                
-                if (scores.length === 0) {
-                    podiumContent.innerHTML = '<p class="no-scores">Nenhuma pontuação ainda. Seja o primeiro a jogar e aparecer aqui! 🎮</p>';
-                    return;
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar pontuações');
                 }
+                const scores = await response.json();
+                console.log('Pontuações carregadas:', scores); // Debug
                 
-                let html = '<ul class="podium-list">';
+                // Separar pontuações por dificuldade
+                const easyScores = scores.filter(s => s.difficulty === 'easy');
+                const mediumScores = scores.filter(s => s.difficulty === 'medium');
+                const hardScores = scores.filter(s => s.difficulty === 'hard');
                 
-                scores.forEach((score, index) => {
-                    const positionClass = index === 0 ? 'position-1' : 
-                                        index === 1 ? 'position-2' : 
-                                        index === 2 ? 'position-3' : '';
-                    
-                    // Formatar o tempo para exibição
-                    const minutes = Math.floor(score.time_taken / 60);
-                    const seconds = score.time_taken % 60;
-                    const timeFormatted = `${minutes > 0 ? minutes + 'm ' : ''}${seconds}s`;
-                    
-                    // Traduzir a dificuldade
-                    let difficultyText = '';
-                    switch(score.difficulty) {
-                        case 'easy': difficultyText = 'Fácil'; break;
-                        case 'medium': difficultyText = 'Médio'; break;
-                        case 'hard': difficultyText = 'Difícil'; break;
-                        default: difficultyText = score.difficulty;
-                    }
-                    
-                    html += `
-                        <li class="podium-item">
-                            <span class="podium-position ${positionClass}">${index + 1}º</span>
-                            <div class="podium-info">
-                                <div class="podium-name">${score.name}</div>
-                                <div class="podium-email">${score.email}</div>
-                                <div class="podium-difficulty">Dificuldade: ${difficultyText}</div>
-                            </div>
-                            <div>
-                                <div class="podium-score">${score.score} pts</div>
-                                <div class="podium-time">${timeFormatted}</div>
-                            </div>
-                        </li>
-                    `;
+                // Ordenar por pontuação (maior primeiro) e depois por tempo (menor primeiro)
+                const sortScores = (arr) => arr.sort((a, b) => {
+                    if (b.score !== a.score) return b.score - a.score;
+                    return a.time_taken - b.time_taken;
                 });
                 
-                html += '</ul>';
-                podiumContent.innerHTML = html;
+                // Exibir pontuações
+                displayScores(sortScores(easyScores), 'easy-scores');
+                displayScores(sortScores(mediumScores), 'medium-scores');
+                displayScores(sortScores(hardScores), 'hard-scores');
+                
             } catch (error) {
                 console.error('Erro ao carregar pontuações:', error);
-                document.getElementById('podium-content').innerHTML = '<p class="no-scores">Erro ao carregar pontuações. Tente novamente mais tarde.</p>';
+                document.querySelectorAll('.podium-list').forEach(el => {
+                    el.innerHTML = '<p class="no-scores">Erro ao carregar pontuações</p>';
+                });
             }
         }
-        
-        // Carregar as pontuações quando a página for carregada
-        window.addEventListener('DOMContentLoaded', loadScores);
+
+        // Função para exibir as pontuações
+        function displayScores(scores, containerId) {
+            const container = document.getElementById(containerId);
+            
+            if (!scores || scores.length === 0) {
+                container.innerHTML = '<p class="no-scores">Nenhuma pontuação ainda</p>';
+                return;
+            }
+            
+            // Pegar apenas as top 10 pontuações
+            const topScores = scores.slice(0, 10);
+            
+            container.innerHTML = topScores.map((score, index) => {
+                const positionClass = index === 0 ? 'position-1' : 
+                                    index === 1 ? 'position-2' : 
+                                    index === 2 ? 'position-3' : '';
+                
+                // Formatar o tempo (segundos para mm:ss)
+                const minutes = Math.floor(score.time_taken / 60);
+                const seconds = score.time_taken % 60;
+                const timeFormatted = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                return `
+                    <div class="podium-item">
+                        <span class="podium-position ${positionClass}">${index + 1}º</span>
+                        <div class="podium-info">
+                            <div class="podium-name">${score.name}</div>
+                            <div class="podium-team">
+                                <img src="${teamImages[score.team]}" alt="${score.team}" class="team-icon">
+                                Time ${score.team === 'cat' ? 'Gato' : 'Cachorro'}
+                            </div>
+                        </div>
+                        <span class="podium-score">${score.score} pts</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Carregar pontuações quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadScores);
     </script>
 </body>
 </html>
