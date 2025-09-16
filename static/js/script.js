@@ -3,9 +3,9 @@ const questions = {
     singleplayer: {
         easy: [
             {
-                question: "Qual o nome do cachorro?",
-                correctAnswer: "Carla",
-                incorrectOptions: ["Rodrigo", "Luis", "Gorila"],
+                question: "Por que o céu é azul?",
+                correctAnswer: "Porque a luz do sol se espalha na atmosfera",
+                incorrectOptions: ["Porque Deus pintou assim", "Porque o mar reflete nele", "Por causa das nuvens"],
                 difficulty: "easy"
             },
             {
@@ -30,6 +30,96 @@ const questions = {
                 question: "Quantas patas tem um cachorro?",
                 correctAnswer: "4",
                 incorrectOptions: ["2", "6", "8"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal mia?",
+                correctAnswer: "Gato",
+                incorrectOptions: ["Cachorro", "Vaca", "Pássaro"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que som faz a vaca?",
+                correctAnswer: "Muu",
+                incorrectOptions: ["Au au", "Miau", "Cócóricó"],
+                difficulty: "easy"
+            },
+            {
+                question: "Qual fruta é conhecida por ser amarela?",
+                correctAnswer: "Banana",
+                incorrectOptions: ["Maçã", "Uva", "Laranja"],
+                difficulty: "easy"
+            },
+            {
+                question: "Quantos dedos temos em uma mão?",
+                correctAnswer: "5",
+                incorrectOptions: ["4", "6", "10"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que estação vem depois do verão?",
+                correctAnswer: "Outono",
+                incorrectOptions: ["Primavera", "Inverno", "Chuvosa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal tem listras pretas e brancas?",
+                correctAnswer: "Zebra",
+                incorrectOptions: ["Leão", "Elefante", "Girafa"],
+                difficulty: "easy"
+            },
+            {
+                question: "O que as plantas precisam para crescer?",
+                correctAnswer: "Água e sol",
+                incorrectOptions: ["Doces e bolos", "Brinquedos", "Roupas"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que forma tem uma bola?",
+                correctAnswer: "Redonda",
+                incorrectOptions: ["Quadrada", "Triangular", "Retangular"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que cor é uma folha saudável?",
+                correctAnswer: "Verde",
+                incorrectOptions: ["Azul", "Vermelha", "Roxa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal vive na água e tem barbatanas?",
+                correctAnswer: "Peixe",
+                incorrectOptions: ["Gato", "Pássaro", "Coelho"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que day vem depois de terça-feira?",
+                correctAnswer: "Quarta-feira",
+                incorrectOptions: ["Segunda-feira", "Sexta-feira", "Domingo"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que cor se forma ao misturar azul e amarelo?",
+                correctAnswer: "Verde",
+                incorrectOptions: ["Roxo", "Laranja", "Rosa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal é o rei da selva?",
+                correctAnswer: "Leão",
+                incorrectOptions: ["Macaco", "Elefante", "Tigre"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que fruto é usado para fazer vinho?",
+                correctAnswer: "Uva",
+                incorrectOptions: ["Maçã", "Laranja", "Banana"],
+                difficulty: "easy"
+            },
+            {
+                question: "Quantos meses tem um ano?",
+                correctAnswer: "12",
+                incorrectOptions: ["6", "10", "24"],
                 difficulty: "easy"
             }
         ],
@@ -63,6 +153,96 @@ const questions = {
                 correctAnswer: "118",
                 incorrectOptions: ["100", "150", "92"],
                 difficulty: "medium"
+            },
+            {
+                question: "Qual é a capital da Austrália?",
+                correctAnswer: "Camberra",
+                incorrectOptions: ["Sydney", "Melbourne", "Perth"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem escreveu 'Dom Quixote'?",
+                correctAnswer: "Miguel de Cervantes",
+                incorrectOptions: ["William Shakespeare", "Machado de Assis", "Gabriel García Márquez"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o metal mais condutor de eletricidade?",
+                correctAnswer: "Prata",
+                incorrectOptions: ["Cobre", "Ouro", "Alumínio"],
+                difficulty: "medium"
+            },
+            {
+                question: "Em que continente fica o Egito?",
+                correctAnswer: "África",
+                incorrectOptions: ["Ásia", "Europa", "América do Sul"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é a montanha mais alta do mundo?",
+                correctAnswer: "Monte Everest",
+                incorrectOptions: ["Monte Kilimanjaro", "Monte Fuji", "Monte McKinley"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quantos lados tem um heptágono?",
+                correctAnswer: "7",
+                incorrectOptions: ["5", "6", "8"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior mamífero do mundo?",
+                correctAnswer: "Baleia-azul",
+                incorrectOptions: ["Elefante-africano", "Girafa", "Urso-polar"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem foi o primeiro presidente do Brasil?",
+                correctAnswer: "Deodoro da Fonseca",
+                incorrectOptions: ["Getúlio Vargas", "Juscelino Kubitschek", "Prudente de Morais"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o símbolo químico do oxigênio?",
+                correctAnswer: "O",
+                incorrectOptions: ["Ox", "Og", "Oi"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o país mais populoso do mundo?",
+                correctAnswer: "China",
+                incorrectOptions: ["Índia", "Estados Unidos", "Indonésia"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem descobriu a penicilina?",
+                correctAnswer: "Alexander Fleming",
+                incorrectOptions: ["Louis Pasteur", "Marie Curie", "Robert Koch"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior deserto do mundo?",
+                correctAnswer: "Antártida",
+                incorrectOptions: ["Saara", "Arábico", "Gobi"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quantos ossos tem o corpo humano?",
+                correctAnswer: "206",
+                incorrectOptions: ["200", "250", "300"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é a capital do Canadá?",
+                correctAnswer: "Ottawa",
+                incorrectOptions: ["Toronto", "Vancouver", "Montreal"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem pintou 'O Grito'?",
+                correctAnswer: "Edvard Munch",
+                incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Salvador Dalí"],
+                difficulty: "medium"
             }
         ],
         hard: [
@@ -91,43 +271,163 @@ const questions = {
                 difficulty: "hard"
             },
             {
-                question: "Quem descobriu a penicilina?",
-                correctAnswer: "Alexander Fleming",
-                incorrectOptions: ["Louis Pasteur", "Marie Curie", "Robert Koch"],
+                question: "Quem descobriu a estrutura do DNA?",
+                correctAnswer: "Watson e Crick",
+                incorrectOptions: ["Einstein e Newton", "Darwin e Mendel", "Curie e Pasteur"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a velocidade da luz no vácuo?",
+                correctAnswer: "299.792.458 m/s",
+                incorrectOptions: ["150.000.000 m/s", "450.000.000 m/s", "100.000.000 m/s"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem foi o autor de 'O Príncipe'?",
+                correctAnswer: "Nicolau Maquiavel",
+                incorrectOptions: ["Thomas Hobbes", "John Locke", "Jean-Jacques Rousseau"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a unidade de medida da resistência elétrica?",
+                correctAnswer: "Ohm",
+                incorrectOptions: ["Volt", "Ampère", "Watt"],
+                difficulty: "hard"
+            },
+            {
+                question: "Em que ano ocorreu a Revolução Francesa?",
+                correctAnswer: "1789",
+                incorrectOptions: ["1776", "1799", "1812"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o país com a maior área territorial do mundo?",
+                correctAnswer: "Rússia",
+                incorrectOptions: ["Canadá", "China", "Estados Unidos"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem compôs a 'Nona Sinfonia'?",
+                correctAnswer: "Ludwig van Beethoven",
+                incorrectOptions: ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Frédéric Chopin"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o processo de divisão celular que forma gametas?",
+                correctAnswer: "Meiose",
+                incorrectOptions: ["Mitose", "Clivagem", "Fissão binária"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a capital da Mongólia?",
+                correctAnswer: "Ulan Bator",
+                incorrectOptions: ["Astana", "Bishkek", "Dushanbe"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem foi o primeiro imperador de Roma?",
+                correctAnswer: "Augusto",
+                incorrectOptions: ["Júlio César", "Nero", "Constantino"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o elemento mais abundante na crosta terrestre?",
+                correctAnswer: "Oxigênio",
+                incorrectOptions: ["Silício", "Alumínio", "Ferro"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem desenvolveu a teoria da relatividade?",
+                correctAnswer: "Albert Einstein",
+                incorrectOptions: ["Isaac Newton", "Niels Bohr", "Stephen Hawking"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o maior lago de água doce do mundo?",
+                correctAnswer: "Lago Superior",
+                incorrectOptions: ["Lago Vitória", "Lago Tanganica", "Lago Baikal"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem escreveu 'Ulisses'?",
+                correctAnswer: "James Joyce",
+                incorrectOptions: ["Virginia Woolf", "T.S. Eliot", "Franz Kafka"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a fórmula do teorema de Pitágoras?",
+                correctAnswer: "a² + b² = c²",
+                incorrectOptions: ["E = mc²", "F = ma", "V = πr²h"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o mineral mais duro da natureza?",
+                correctAnswer: "Diamante",
+                incorrectOptions: ["Quartzo", "Rubi", "Safira"],
                 difficulty: "hard"
             }
         ]
     },
     multiplayer: [
         {
-            question: "O cachorro se chama Carla?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual animal é conhecido como o rei da selva?",
+            correctAnswer: "O leão",
+            incorrectOptions: ["O elefante"],
             difficulty: "easy"
         },
         {
-            question: "Brasília é a capital do Brasil?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "De que cor é o céu em um dia claro e sem nuvens?",
+            correctAnswer: "Azul",
+            incorrectOptions: ["Verde"],
             difficulty: "easy"
         },
         {
-            question: "A Terra é plana?",
-            correctAnswer: "Não",
-            incorrectOptions: ["Sim"],
-            difficulty: "easy"
-        },
-        {
-            question: "O sol é uma estrela?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual é o maior planeta do nosso Sistema Solar?",
+            correctAnswer: "Júpiter",
+            incorrectOptions: ["Saturno"],
             difficulty: "medium"
         },
         {
-            question: "Shakespeare escreveu Romeu e Julieta?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Quantos lados tem um triângulo?",
+            correctAnswer: "Três",
+            incorrectOptions: ["Quatro"],
             difficulty: "medium"
+        },
+        {
+            question: "Qual destes NÃO é um oceano da Terra?",
+            correctAnswer: "Oceano Solitário",
+            incorrectOptions: ["Oceano Pacífico"],
+            difficulty: "medium"
+        },
+        {
+            question: "Quem pintou a Mona Lisa?",
+            correctAnswer: "Leonardo da Vinci",
+            incorrectOptions: ["Pablo Picasso"],
+            difficulty: "medium"
+        },
+        {
+            question: "Qual é o principal gás que compõe o ar que respiramos?",
+            correctAnswer: "Nitrogênio",
+            incorrectOptions: ["Oxigênio"],
+            difficulty: "medium"
+        },
+        {
+            question: "Qual famoso físico teórico propôs a teoria da relatividade geral?",
+            correctAnswer: "Albert Einstein",
+            incorrectOptions: ["Isaac Newton"],
+            difficulty: "hard"
+        },
+        {
+            question: "Qual elemento químico tem o símbolo 'Au' na tabela periódica?",
+            correctAnswer: "Ouro",
+            incorrectOptions: ["Prata"],
+            difficulty: "hard"
+        },
+        {
+            question: "Qual destas obras épicas foi escrita pelo poeta grego Homero?",
+            correctAnswer: "A Odisseia",
+            incorrectOptions: ["A Divina Comédia"],
+            difficulty: "hard"
         }
     ]
 };
@@ -145,12 +445,13 @@ const gameState = {
     timeLeft: 10,
     port: null,
     reader: null,
-    answerLock: false, // Bloqueio para evitar múltiplas respostas
-    multiplayerAnswered: { team1: false, team2: false }, // Controle de respostas no multiplayer
-    firstAnswerTeam: null, // Armazena qual time respondeu primeiro
-    questionStartTime: 0, // Timestamp de quando a pergunta foi exibida
-    totalTimeTaken: 0, // Tempo total gasto nas respostas
-    showSaveScoreDialog: false // Controla se deve mostrar o diálogo de salvar pontuação
+    answerLock: false,
+    multiplayerAnswered: { team1: false, team2: false },
+    firstAnswerTeam: null,
+    questionStartTime: 0,
+    totalTimeTaken: 0,
+    showSaveScoreDialog: false,
+    nextQuestionButton: null
 };
 
 // Elementos DOM
@@ -186,16 +487,16 @@ const animalImages = {
 // Mapeamento dos botões do Arduino
 const ARDUINO_BUTTONS = {
     SINGLEPLAYER: {
-        OPTION_A: 2, // Pino 2 - Opção A
-        OPTION_B: 3, // Pino 3 - Opção B
-        OPTION_C: 4, // Pino 4 - Opção C
-        OPTION_D: 5  // Pino 5 - Opção D
+        OPTION_A: 2,
+        OPTION_B: 3,
+        OPTION_C: 4,
+        OPTION_D: 5
     },
     MULTIPLAYER: {
-        TEAM1_A: 2,  // Pino 2 - Time 1, Opção A
-        TEAM1_B: 4,  // Pino 4 - Time 1, Opção B
-        TEAM2_A: 3,  // Pino 3 - Time 2, Opção A
-        TEAM2_B: 5   // Pino 5 - Time 2, Opção B
+        TEAM1_A: 2,
+        TEAM1_B: 4,
+        TEAM2_A: 3,
+        TEAM2_B: 5
     }
 };
 
@@ -208,7 +509,6 @@ function init() {
         });
     });
     
-    // Event listeners para as novas telas
     elements.continueBtn.addEventListener('click', showAnimalSelection);
     elements.startGameBtn.addEventListener('click', startGame);
     elements.connectBtn.addEventListener('click', connectArduino);
@@ -223,7 +523,7 @@ function selectMode(mode) {
     elements.modeSelection.style.display = 'none';
     
     if (mode === 'singleplayer') {
-        showDifficultySelection(); // Mostrar seleção de dificuldade
+        showDifficultySelection();
     } else {
         setupMultiplayer();
     }
@@ -241,11 +541,10 @@ function selectDifficulty(difficulty) {
     showStory();
 }
 
-// Continuação do script.js
+// Mostrar história
 function showStory() {
     elements.storyScreen.style.display = 'flex';
     
-    // Texto da história com efeito de digitação
     const story = "Você estava andando pelo parque e viu...";
     typeText(elements.storyText, story, () => {
         elements.continueBtn.style.display = 'block';
@@ -292,7 +591,7 @@ function showMission(animal) {
 // Configuração Multiplayer
 function setupMultiplayer() {
     gameState.animal = { team1: 'cat', team2: 'dog' };
-    gameState.difficulty = 'easy'; // Dificuldade padrão para multiplayer
+    gameState.difficulty = 'easy';
     startGame();
 }
 
@@ -301,46 +600,42 @@ function startGame() {
     elements.missionScreen.style.display = 'none';
     elements.gameContainer.style.display = 'flex';
     
-    // Resetar estado do jogo
     gameState.answerLock = false;
     gameState.multiplayerAnswered = { team1: false, team2: false };
     gameState.firstAnswerTeam = null;
     gameState.totalTimeTaken = 0;
     gameState.showSaveScoreDialog = false;
+    gameState.currentQuestionIndex = 0;
     
     if (gameState.mode === 'singleplayer') {
         elements.gameContainer.className = `singleplayer ${gameState.animal}-theme`;
         document.getElementById('opponent-score').style.display = 'none';
         
-        // Define a imagem do animal escolhido
         const animalImg = animalImages[gameState.animal];
         elements.playerAnimalImg.src = animalImg;
     } else {
         elements.gameContainer.className = 'multiplayer-layout';
         document.getElementById('opponent-score').style.display = 'flex';
         
-        // Define as imagens para multiplayer
-        elements.playerAnimalImg.src = animalImages.cat; // Gato
-        elements.opponentAnimalImg.src = animalImages.dog; // Cachorro
+        elements.playerAnimalImg.src = animalImages.cat;
+        elements.opponentAnimalImg.src = animalImages.dog;
     }
     
     loadQuestions();
     showQuestion();
 }
 
-// Carrega perguntas aleatórias baseadas na dificuldade
+// Carrega perguntas
 function loadQuestions() {
     let questionSet;
     
     if (gameState.mode === 'singleplayer') {
-        // Carrega perguntas baseadas na dificuldade escolhida
         questionSet = questions.singleplayer[gameState.difficulty];
     } else {
         questionSet = questions.multiplayer;
     }
     
     gameState.questions = [...questionSet].sort(() => Math.random() - 0.5);
-    gameState.currentQuestionIndex = 0;
     gameState.scores = { team1: 0, team2: 0, player: 0 };
     updateScores();
 }
@@ -352,12 +647,10 @@ function showQuestion() {
         return;
     }
     
-    // Resetar estado para nova pergunta
     gameState.answerLock = false;
     gameState.multiplayerAnswered = { team1: false, team2: false };
     gameState.firstAnswerTeam = null;
     
-    // Registrar o tempo de início da pergunta
     gameState.questionStartTime = Date.now();
     
     const currentQuestion = gameState.questions[gameState.currentQuestionIndex];
@@ -366,16 +659,13 @@ function showQuestion() {
     elements.optionsContainer.innerHTML = '';
     elements.status.textContent = '';
     
-    // Cria array de opções
     const options = [
         { text: currentQuestion.correctAnswer, correct: true },
         ...currentQuestion.incorrectOptions.map(text => ({ text, correct: false }))
     ];
     
-    // Embaralha as opções
     shuffleArray(options);
     
-    // Cria os botões de opção
     options.forEach((option, index) => {
         const button = document.createElement('button');
         button.className = 'option-btn';
@@ -384,14 +674,13 @@ function showQuestion() {
         elements.optionsContainer.appendChild(button);
     });
     
-    // Ajusta o layout
     elements.optionsContainer.style.gridTemplateColumns = 
         gameState.mode === 'multiplayer' ? '1fr' : '1fr 1fr';
     
     startTimer(10);
 }
 
-// Função para embaralhar array
+// Embaralha array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -401,34 +690,31 @@ function shuffleArray(array) {
 
 // Verifica a resposta
 function checkAnswer(isCorrect, team = null) {
-    if (gameState.answerLock) return; // Evita múltiplas respostas
+    if (gameState.answerLock) return;
     
-    // Calcular o tempo gasto para responder
-    const timeTaken = (Date.now() - gameState.questionStartTime) / 1000; // em segundos
+    const timeTaken = (Date.now() - gameState.questionStartTime) / 1000;
     gameState.totalTimeTaken += timeTaken;
     
     clearInterval(gameState.timer);
-    gameState.answerLock = true; // Bloqueia outras respostas
+    gameState.answerLock = true;
     
-    // Sistema de pontuação baseado no tempo (apenas singleplayer)
     let pointsEarned = 0;
     
     if (gameState.mode === 'singleplayer') {
         if (isCorrect) {
-            // Quanto mais rápido, mais pontos (máximo 1000, mínimo 100)
             pointsEarned = Math.max(100, 1000 - Math.floor(timeTaken * 100));
             gameState.scores.player += pointsEarned;
             elements.status.textContent = `✅ Resposta correta! +${pointsEarned} pontos (${timeTaken.toFixed(1)}s)`;
         } else {
             elements.status.textContent = "❌ Resposta incorreta!";
+            // Destacar a resposta correta quando o jogador erra
+            highlightCorrectAnswer();
         }
     } else {
-        // Modo multiplayer - apenas a primeira resposta conta
         if (gameState.firstAnswerTeam === null) {
             gameState.firstAnswerTeam = team;
             
             if (isCorrect) {
-                // Time que respondeu primeiro acertou
                 if (team === 'team1') {
                     gameState.scores.team1++;
                     elements.status.textContent = "✅ Time Gato acertou primeiro! +1 ponto";
@@ -437,13 +723,14 @@ function checkAnswer(isCorrect, team = null) {
                     elements.status.textContent = "✅ Time Cachorro acertou primeiro! +1 ponto";
                 }
             } else {
-                // Time que respondeu primeiro errou - ponto vai para o outro time
                 if (team === 'team1') {
                     gameState.scores.team2++;
                     elements.status.textContent = "❌ Time Gato errou! Ponto para Time Cachorro";
+                    highlightCorrectAnswer();
                 } else if (team === 'team2') {
                     gameState.scores.team1++;
                     elements.status.textContent = "❌ Time Cachorro errou! Ponto para Time Gato";
+                    highlightCorrectAnswer();
                 }
             }
         }
@@ -451,10 +738,50 @@ function checkAnswer(isCorrect, team = null) {
     
     updateScores();
     
-    setTimeout(() => {
+    // Criar botão de próxima pergunta
+    createNextQuestionButton();
+}
+
+// Cria botão de próxima pergunta
+function createNextQuestionButton() {
+    if (gameState.nextQuestionButton) {
+        gameState.nextQuestionButton.remove();
+    }
+    
+    const button = document.createElement('button');
+    button.className = 'next-question-btn';
+    button.textContent = 'Próxima Pergunta →';
+    button.style.cssText = `
+        padding: 1rem 2rem;
+        background: #2e8b57;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+    `;
+    
+    button.onclick = () => {
         gameState.currentQuestionIndex++;
+        button.remove();
         showQuestion();
-    }, 1500);
+    };
+    
+    button.onmouseover = () => {
+        button.style.transform = 'translateY(-2px)';
+        button.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+    };
+    
+    button.onmouseout = () => {
+        button.style.transform = 'none';
+        button.style.boxShadow = 'none';
+    };
+    
+    elements.status.appendChild(button);
+    gameState.nextQuestionButton = button;
 }
 
 // Atualiza o placar
@@ -467,7 +794,7 @@ function updateScores() {
     }
 }
 
-// Timer
+// Timer com botão de próxima pergunta
 function startTimer(seconds) {
     gameState.timeLeft = seconds;
     updateTimer();
@@ -480,8 +807,15 @@ function startTimer(seconds) {
         if (gameState.timeLeft <= 0) {
             clearInterval(gameState.timer);
             elements.status.textContent = "⏰ Tempo esgotado!";
-            gameState.currentQuestionIndex++;
-            setTimeout(showQuestion, 1500);
+            
+            // Bloquear respostas após tempo esgotado
+            gameState.answerLock = true;
+            
+            // Destacar a resposta correta
+            highlightCorrectAnswer();
+            
+            // Criar botão de próxima pergunta
+            createNextQuestionButton();
         }
     }, 1000);
 }
@@ -498,7 +832,6 @@ function endGame() {
     if (gameState.mode === 'singleplayer') {
         elements.status.textContent = `🎉 Você fez ${gameState.scores.player} pontos em ${gameState.totalTimeTaken.toFixed(1)} segundos!`;
         
-        // Mostrar opção para salvar pontuação
         setTimeout(() => {
             showSaveScoreDialog();
         }, 2000);
@@ -536,9 +869,6 @@ function showSaveScoreDialog() {
 }
 
 // Salvar pontuação no servidor
-// Salvar pontuação no servidor
-// Salvar pontuação no servidor
-// script.js (atualizar a função saveScore)
 async function saveScore() {
     const nameInput = document.getElementById('player-name');
     const emailInput = document.getElementById('player-email');
@@ -567,7 +897,8 @@ async function saveScore() {
                 email: email,
                 score: gameState.scores.player,
                 time_taken: Math.floor(gameState.totalTimeTaken),
-                difficulty: gameState.difficulty
+                difficulty: gameState.difficulty,
+                team: gameState.animal
             })
         });
         
@@ -586,7 +917,16 @@ async function saveScore() {
     
     gameState.showSaveScoreDialog = false;
 }
-// Arduino
+// Destacar a resposta correta quando o tempo acabar
+function highlightCorrectAnswer() {
+    const options = elements.optionsContainer.querySelectorAll('.option-btn');
+    options.forEach(option => {
+        if (option.textContent.includes(gameState.currentQuestion.correctAnswer)) {
+            option.classList.add('correct');
+        }
+    });
+}
+// Arduino (mantido igual)
 async function connectArduino() {
     try {
         if (!navigator.serial) {
@@ -620,7 +960,6 @@ async function listenToArduino() {
             const data = decoder.decode(value).trim();
             console.log("Dados recebidos:", data);
             
-            // Processa cada linha recebida
             data.split('\n').forEach(line => {
                 const buttonPress = line.trim();
                 if (buttonPress) {
@@ -641,7 +980,6 @@ function handleButtonPress(buttonPin) {
     const options = elements.optionsContainer.querySelectorAll('.option-btn');
     
     if (gameState.mode === 'singleplayer') {
-        // Modo Singleplayer: botões 2,3,4,5 = A,B,C,D
         let optionIndex = -1;
         
         switch(buttonPin) {
@@ -656,32 +994,27 @@ function handleButtonPress(buttonPin) {
             checkAnswer(isCorrect);
         }
     } else {
-        // Modo Multiplayer
         let team = null;
         let isCorrect = false;
         
-        // Time 1 (Gato) - Botões 2 e 4
         if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_A || 
             buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_B) {
             
-            if (gameState.multiplayerAnswered.team1) return; // Time já respondeu
+            if (gameState.multiplayerAnswered.team1) return;
             gameState.multiplayerAnswered.team1 = true;
             team = 'team1';
             
-            // Verifica se a resposta está correta
             const selectedOption = (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_A) ? 0 : 1;
             isCorrect = options[selectedOption].textContent.includes(gameState.currentQuestion.correctAnswer);
             
         } 
-        // Time 2 (Cachorro) - Botões 3 e 5
         else if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_A || 
                  buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_B) {
             
-            if (gameState.multiplayerAnswered.team2) return; // Time já respondeu
+            if (gameState.multiplayerAnswered.team2) return;
             gameState.multiplayerAnswered.team2 = true;
             team = 'team2';
             
-            // Verifica se a resposta está correta
             const selectedOption = (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_A) ? 0 : 1;
             isCorrect = options[selectedOption].textContent.includes(gameState.currentQuestion.correctAnswer);
         }
