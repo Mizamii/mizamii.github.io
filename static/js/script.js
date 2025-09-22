@@ -210,8 +210,8 @@ const questions = {
             },
             {
                 question: "Qual é o país mais populoso do mundo?",
-                correctAnswer: "China",
-                incorrectOptions: ["Índia", "Estados Unidos", "Indonésia"],
+                correctAnswer: "Índia",
+                incorrectOptions: ["China", "Estados Unidos", "Indonésia"],
                 difficulty: "medium"
             },
             {
@@ -369,6 +369,7 @@ const questions = {
         ]
     },
     multiplayer: [
+        // --- PERGUNTAS FÁCEIS (3) ---
         {
             question: "Qual animal é conhecido como o rei da selva?",
             correctAnswer: "O leão",
@@ -381,6 +382,14 @@ const questions = {
             incorrectOptions: ["Verde"],
             difficulty: "easy"
         },
+        {
+            question: "Quantos dias tem uma semana?",
+            correctAnswer: "Sete",
+            incorrectOptions: ["Cinco"],
+            difficulty: "easy"
+        },
+    
+        // --- PERGUNTAS MÉDIAS (7) ---
         {
             question: "Qual é o maior planeta do nosso Sistema Solar?",
             correctAnswer: "Júpiter",
@@ -412,6 +421,20 @@ const questions = {
             difficulty: "medium"
         },
         {
+            question: "Qual é a capital do Brasil?",
+            correctAnswer: "Brasília",
+            incorrectOptions: ["Rio de Janeiro"],
+            difficulty: "medium"
+        },
+        {
+            question: "Em que ano o homem pisou na Lua pela primeira vez?",
+            correctAnswer: "1969",
+            incorrectOptions: ["1975"],
+            difficulty: "medium"
+        },
+    
+        // --- PERGUNTAS DIFÍCEIS (5) ---
+        {
             question: "Qual famoso físico teórico propôs a teoria da relatividade geral?",
             correctAnswer: "Albert Einstein",
             incorrectOptions: ["Isaac Newton"],
@@ -427,6 +450,18 @@ const questions = {
             question: "Qual destas obras épicas foi escrita pelo poeta grego Homero?",
             correctAnswer: "A Odisseia",
             incorrectOptions: ["A Divina Comédia"],
+            difficulty: "hard"
+        },
+        {
+            question: "Qual é o nome do fenômeno astronômico em que a Lua bloqueia completamente o Sol?",
+            correctAnswer: "Eclipse solar total",
+            incorrectOptions: ["Eclipse lunar"],
+            difficulty: "hard"
+        },
+        {
+            question: "Quem foi o autor da peça de teatro 'Hamlet'?",
+            correctAnswer: "William Shakespeare",
+            incorrectOptions: ["Machado de Assis"],
             difficulty: "hard"
         }
     ]
