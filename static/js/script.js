@@ -93,7 +93,7 @@ const questions = {
                 difficulty: "easy"
             },
             {
-                question: "Que day vem depois de terça-feira?",
+                question: "Que dia vem depois de terça-feira?",
                 correctAnswer: "Quarta-feira",
                 incorrectOptions: ["Segunda-feira", "Sexta-feira", "Domingo"],
                 difficulty: "easy"
@@ -676,6 +676,7 @@ function loadQuestions() {
 }
 
 // Mostra a pergunta atual
+// Mostra a pergunta atual (modificada)
 function showQuestion() {
     if (gameState.currentQuestionIndex >= gameState.questions.length) {
         endGame();
@@ -705,12 +706,34 @@ function showQuestion() {
         const button = document.createElement('button');
         button.className = 'option-btn';
         button.textContent = `${String.fromCharCode(65 + index)}) ${option.text}`;
-        button.onclick = () => checkAnswer(option.correct);
+        
+        // Adicionar evento de clique para singleplayer
+        if (gameState.mode === 'singleplayer') {
+            button.onclick = () => {
+                // Remover seleção anterior
+                const previouslySelected = elements.optionsContainer.querySelector('.selected');
+                if (previouslySelected) {
+                    previouslySelected.classList.remove('selected');
+                }
+                
+                // Marcar como selecionado
+                button.classList.add('selected');
+                
+                // Verificar resposta
+                checkAnswer(option.correct);
+            };
+        } else {
+            button.onclick = () => checkAnswer(option.correct);
+        }
+        
         elements.optionsContainer.appendChild(button);
     });
     
     elements.optionsContainer.style.gridTemplateColumns = 
         gameState.mode === 'multiplayer' ? '1fr' : '1fr 1fr';
+    
+    // MOSTRAR o botão de voltar ao início
+    showBackToHomeButton();
     
     startTimer(10);
 }
@@ -734,15 +757,37 @@ function checkAnswer(isCorrect, team = null) {
     gameState.answerLock = true;
     
     let pointsEarned = 0;
+    let selectedButton = null;
+    
+    // Encontrar o botão que foi clicado (para singleplayer)
+    if (gameState.mode === 'singleplayer' && !team) {
+        const options = elements.optionsContainer.querySelectorAll('.option-btn');
+        options.forEach(option => {
+            if (option.classList.contains('selected')) {
+                selectedButton = option;
+            }
+        });
+    }
     
     if (gameState.mode === 'singleplayer') {
         if (isCorrect) {
             pointsEarned = Math.max(100, 1000 - Math.floor(timeTaken * 100));
             gameState.scores.player += pointsEarned;
             elements.status.textContent = `✅ Resposta correta! +${pointsEarned} pontos (${timeTaken.toFixed(1)}s)`;
+            
+            // Contornar em azul a resposta escolhida (correta)
+            if (selectedButton) {
+                selectedButton.classList.add('selected-correct');
+            }
         } else {
             elements.status.textContent = "❌ Resposta incorreta!";
-            // Destacar a resposta correta quando o jogador erra
+            
+            // Contornar em vermelho a resposta escolhida (incorreta)
+            if (selectedButton) {
+                selectedButton.classList.add('selected-incorrect');
+            }
+            
+            // Destacar a resposta correta em verde
             highlightCorrectAnswer();
         }
     } else {
@@ -830,29 +875,37 @@ function updateScores() {
 }
 
 // Timer com botão de próxima pergunta
-function startTimer(seconds) {
-    gameState.timeLeft = seconds;
-    updateTimer();
+// Inicia o Jogo (modificada)
+function startGame() {
+    elements.missionScreen.style.display = 'none';
+    elements.gameContainer.style.display = 'flex';
     
-    clearInterval(gameState.timer);
-    gameState.timer = setInterval(() => {
-        gameState.timeLeft--;
-        updateTimer();
+    gameState.answerLock = false;
+    gameState.multiplayerAnswered = { team1: false, team2: false };
+    gameState.firstAnswerTeam = null;
+    gameState.totalTimeTaken = 0;
+    gameState.showSaveScoreDialog = false;
+    gameState.currentQuestionIndex = 0;
+    
+    if (gameState.mode === 'singleplayer') {
+        elements.gameContainer.className = `singleplayer ${gameState.animal}-theme`;
+        document.getElementById('opponent-score').style.display = 'none';
         
-        if (gameState.timeLeft <= 0) {
-            clearInterval(gameState.timer);
-            elements.status.textContent = "⏰ Tempo esgotado!";
-            
-            // Bloquear respostas após tempo esgotado
-            gameState.answerLock = true;
-            
-            // Destacar a resposta correta
-            highlightCorrectAnswer();
-            
-            // Criar botão de próxima pergunta
-            createNextQuestionButton();
-        }
-    }, 1000);
+        const animalImg = animalImages[gameState.animal];
+        elements.playerAnimalImg.src = animalImg;
+    } else {
+        elements.gameContainer.className = 'multiplayer-layout';
+        document.getElementById('opponent-score').style.display = 'flex';
+        
+        elements.playerAnimalImg.src = animalImages.cat;
+        elements.opponentAnimalImg.src = animalImages.dog;
+    }
+    
+    loadQuestions();
+    showQuestion();
+    
+    // MOSTRAR o botão de voltar ao início
+    showBackToHomeButton();
 }
 
 function updateTimer() {
@@ -952,6 +1005,7 @@ async function saveScore() {
     
     gameState.showSaveScoreDialog = false;
 }
+
 // Destacar a resposta correta quando o tempo acabar
 function highlightCorrectAnswer() {
     const options = elements.optionsContainer.querySelectorAll('.option-btn');
@@ -961,7 +1015,85 @@ function highlightCorrectAnswer() {
         }
     });
 }
-// Arduino (mantido igual)
+
+// Função para criar botão de voltar ao início
+// Função para criar botão de voltar ao início (VERSÃO CORRIGIDA)
+// Função para mostrar o botão de voltar ao início
+function showBackToHomeButton() {
+    const backBtn = document.getElementById('back-to-home-btn');
+    if (backBtn) {
+        backBtn.style.display = 'flex';
+        
+        // Adicionar o evento de clique apenas uma vez
+        if (!backBtn.hasAttribute('data-listener-added')) {
+            backBtn.addEventListener('click', () => {
+                if (confirm('Tem certeza que deseja voltar ao início? Todo o progresso atual será perdido.')) {
+                    resetGame();
+                    showModeSelection();
+                }
+            });
+            backBtn.setAttribute('data-listener-added', 'true');
+        }
+    }
+}
+
+// Função para esconder o botão de voltar ao início
+function hideBackToHomeButton() {
+    const backBtn = document.getElementById('back-to-home-btn');
+    if (backBtn) {
+        backBtn.style.display = 'none';
+    }
+}
+
+// Função para resetar o jogo
+// Função para resetar o jogo (modificada)
+function resetGame() {
+    gameState.mode = null;
+    gameState.difficulty = null;
+    gameState.animal = null;
+    gameState.questions = [];
+    gameState.currentQuestionIndex = 0;
+    gameState.currentQuestion = null;
+    gameState.scores = { team1: 0, team2: 0, player: 0 };
+    gameState.timeLeft = 10;
+    gameState.answerLock = false;
+    gameState.multiplayerAnswered = { team1: false, team2: false };
+    gameState.firstAnswerTeam = null;
+    gameState.questionStartTime = 0;
+    gameState.totalTimeTaken = 0;
+    gameState.showSaveScoreDialog = false;
+    
+    if (gameState.timer) {
+        clearInterval(gameState.timer);
+        gameState.timer = null;
+    }
+    
+    if (gameState.nextQuestionButton) {
+        gameState.nextQuestionButton.remove();
+        gameState.nextQuestionButton = null;
+    }
+    
+    // ESCONDER o botão de voltar ao início
+    hideBackToHomeButton();
+}
+
+// Função para mostrar a tela de seleção de modo
+// Função para mostrar a tela de seleção de modo (modificada)
+function showModeSelection() {
+    // Esconder todas as telas
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.style.display = 'none';
+    });
+    
+    // Mostrar tela de seleção de modo
+    elements.modeSelection.style.display = 'flex';
+    elements.gameContainer.style.display = 'none';
+    
+    // ESCONDER o botão de voltar ao início
+    hideBackToHomeButton();
+}
+
+// Arduino
 async function connectArduino() {
     try {
         if (!navigator.serial) {
@@ -1025,6 +1157,15 @@ function handleButtonPress(buttonPin) {
         }
         
         if (optionIndex >= 0 && optionIndex < options.length) {
+            // Remover seleção anterior
+            const previouslySelected = elements.optionsContainer.querySelector('.selected');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('selected');
+            }
+            
+            // Marcar como selecionado
+            options[optionIndex].classList.add('selected');
+            
             const isCorrect = options[optionIndex].textContent.includes(gameState.currentQuestion.correctAnswer);
             checkAnswer(isCorrect);
         }
