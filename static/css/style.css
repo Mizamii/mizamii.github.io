@@ -855,6 +855,7 @@ body {
     border: none;
     border-radius: 25px;
     font-size: 1.1rem;
+    margin-left: 50px;
     font-weight: bold;
     cursor: pointer;
     margin-top: 1rem;
@@ -866,4 +867,82 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     background: #3da76d;
+}
+/* Adicionar ao final do arquivo style.css */
+
+/* Estilo para resposta escolhida correta (azul) */
+.selected-correct {
+    border: 3px solid #2196F3 !important;
+    background-color: #e3f2fd !important;
+}
+
+/* Estilo para resposta escolhida incorreta (vermelho) */
+.selected-incorrect {
+    border: 3px solid #f44336 !important;
+    background-color: #ffebee !important;
+}
+
+/* Estilo para resposta correta (verde - mantido) */
+.correct {
+    border: 3px solid #4caf50 !important;
+    background-color: #e8f5e8 !important;
+    color: #2e7d32 !important;
+}
+
+/* Botão de voltar ao início */
+.back-to-home-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #6c757d, #495057);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.back-to-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    background: linear-gradient(to right, #5a6268, #343a40);
+}
+/* Estilos para o botão Voltar ao Início */
+.back-to-home-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, #6c757d, #495057);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-to-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    background: linear-gradient(to right, #5a6268, #343a40);
+}
+
+/* Garantir que os controles fiquem alinhados */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
 }
