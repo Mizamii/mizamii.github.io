@@ -369,7 +369,6 @@ const questions = {
         ]
     },
     multiplayer: [
-        // --- PERGUNTAS FÁCEIS (3) ---
         {
             question: "Qual animal é conhecido como o rei da selva?",
             correctAnswer: "O leão",
@@ -388,8 +387,6 @@ const questions = {
             incorrectOptions: ["Cinco"],
             difficulty: "easy"
         },
-    
-        // --- PERGUNTAS MÉDIAS (7) ---
         {
             question: "Qual é o maior planeta do nosso Sistema Solar?",
             correctAnswer: "Júpiter",
@@ -432,8 +429,6 @@ const questions = {
             incorrectOptions: ["1975"],
             difficulty: "medium"
         },
-    
-        // --- PERGUNTAS DIFÍCEIS (5) ---
         {
             question: "Qual famoso físico teórico propôs a teoria da relatividade geral?",
             correctAnswer: "Albert Einstein",
@@ -477,7 +472,7 @@ const gameState = {
     currentQuestion: null,
     scores: { team1: 0, team2: 0, player: 0 },
     timer: null,
-    timeLeft: 10,
+    timeLeft: 20, // Alterado para 20 segundos
     port: null,
     reader: null,
     answerLock: false,
@@ -488,6 +483,10 @@ const gameState = {
     showSaveScoreDialog: false,
     nextQuestionButton: null
 };
+
+// Variáveis para controle do duplo clique
+let lastButtonAPress = 0;
+const DOUBLE_CLICK_DELAY = 500; // 500ms entre cliques
 
 // Elementos DOM
 const elements = {
@@ -658,6 +657,9 @@ function startGame() {
     
     loadQuestions();
     showQuestion();
+    
+    // MOSTRAR o botão de voltar ao início
+    showBackToHomeButton();
 }
 
 // Carrega perguntas
@@ -675,8 +677,54 @@ function loadQuestions() {
     updateScores();
 }
 
+// Timer com 20 segundos
+function startTimer(seconds) {
+    gameState.timeLeft = seconds;
+    updateTimer();
+    
+    // Limpar timer anterior se existir
+    if (gameState.timer) {
+        clearInterval(gameState.timer);
+        gameState.timer = null;
+    }
+    
+    gameState.timer = setInterval(() => {
+        gameState.timeLeft--;
+        updateTimer();
+        
+        if (gameState.timeLeft <= 0) {
+            clearInterval(gameState.timer);
+            gameState.timer = null;
+            elements.status.textContent = "⏰ Tempo esgotado!";
+            
+            // Bloquear respostas após tempo esgotado
+            gameState.answerLock = true;
+            
+            // Destacar a resposta correta
+            highlightCorrectAnswer();
+            
+            // Criar botão de próxima pergunta
+            createNextQuestionButton();
+        }
+    }, 1000);
+}
+
+function updateTimer() {
+    if (elements.timer) {
+        elements.timer.textContent = gameState.timeLeft;
+        
+        // Efeito visual quando o tempo está acabando
+        if (gameState.timeLeft <= 5) {
+            elements.timer.style.color = '#ff4444';
+            elements.timer.style.fontWeight = 'bold';
+        } else {
+            elements.timer.style.color = '';
+            elements.timer.style.fontWeight = '';
+        }
+    }
+}
+
 // Mostra a pergunta atual
-// Mostra a pergunta atual (modificada)
 function showQuestion() {
     if (gameState.currentQuestionIndex >= gameState.questions.length) {
         endGame();
@@ -735,7 +783,7 @@ function showQuestion() {
     // MOSTRAR o botão de voltar ao início
     showBackToHomeButton();
     
-    startTimer(10);
+    startTimer(20); // 20 segundos
 }
 
 // Embaralha array
@@ -862,6 +910,9 @@ function createNextQuestionButton() {
     
     elements.status.appendChild(button);
     gameState.nextQuestionButton = button;
+    
+    // Adicionar instrução para o Arduino
+    elements.status.innerHTML += '<p>🎮 Pressione o botão A duas vezes para próxima pergunta</p>';
 }
 
 // Atualiza o placar
@@ -872,44 +923,6 @@ function updateScores() {
         elements.playerScore.textContent = gameState.scores.team1;
         elements.opponentScore.textContent = gameState.scores.team2;
     }
-}
-
-// Timer com botão de próxima pergunta
-// Inicia o Jogo (modificada)
-function startGame() {
-    elements.missionScreen.style.display = 'none';
-    elements.gameContainer.style.display = 'flex';
-    
-    gameState.answerLock = false;
-    gameState.multiplayerAnswered = { team1: false, team2: false };
-    gameState.firstAnswerTeam = null;
-    gameState.totalTimeTaken = 0;
-    gameState.showSaveScoreDialog = false;
-    gameState.currentQuestionIndex = 0;
-    
-    if (gameState.mode === 'singleplayer') {
-        elements.gameContainer.className = `singleplayer ${gameState.animal}-theme`;
-        document.getElementById('opponent-score').style.display = 'none';
-        
-        const animalImg = animalImages[gameState.animal];
-        elements.playerAnimalImg.src = animalImg;
-    } else {
-        elements.gameContainer.className = 'multiplayer-layout';
-        document.getElementById('opponent-score').style.display = 'flex';
-        
-        elements.playerAnimalImg.src = animalImages.cat;
-        elements.opponentAnimalImg.src = animalImages.dog;
-    }
-    
-    loadQuestions();
-    showQuestion();
-    
-    // MOSTRAR o botão de voltar ao início
-    showBackToHomeButton();
-}
-
-function updateTimer() {
-    elements.timer.textContent = gameState.timeLeft;
 }
 
 // Final do jogo
@@ -1016,8 +1029,6 @@ function highlightCorrectAnswer() {
     });
 }
 
-// Função para criar botão de voltar ao início
-// Função para criar botão de voltar ao início (VERSÃO CORRIGIDA)
 // Função para mostrar o botão de voltar ao início
 function showBackToHomeButton() {
     const backBtn = document.getElementById('back-to-home-btn');
@@ -1046,7 +1057,6 @@ function hideBackToHomeButton() {
 }
 
 // Função para resetar o jogo
-// Função para resetar o jogo (modificada)
 function resetGame() {
     gameState.mode = null;
     gameState.difficulty = null;
@@ -1055,7 +1065,7 @@ function resetGame() {
     gameState.currentQuestionIndex = 0;
     gameState.currentQuestion = null;
     gameState.scores = { team1: 0, team2: 0, player: 0 };
-    gameState.timeLeft = 10;
+    gameState.timeLeft = 20;
     gameState.answerLock = false;
     gameState.multiplayerAnswered = { team1: false, team2: false };
     gameState.firstAnswerTeam = null;
@@ -1078,7 +1088,6 @@ function resetGame() {
 }
 
 // Função para mostrar a tela de seleção de modo
-// Função para mostrar a tela de seleção de modo (modificada)
 function showModeSelection() {
     // Esconder todas as telas
     document.querySelectorAll('.screen').forEach(screen => {
@@ -1091,6 +1100,22 @@ function showModeSelection() {
     
     // ESCONDER o botão de voltar ao início
     hideBackToHomeButton();
+}
+
+// Função para ir para próxima pergunta (duplo clique no botão A)
+function goToNextQuestion() {
+    // Só permite ir para próxima pergunta se a resposta estiver bloqueada (já respondeu ou tempo esgotou)
+    if (gameState.answerLock) {
+        gameState.currentQuestionIndex++;
+        
+        // Remover botão de próxima pergunta se existir
+        if (gameState.nextQuestionButton) {
+            gameState.nextQuestionButton.remove();
+            gameState.nextQuestionButton = null;
+        }
+        
+        showQuestion();
+    }
 }
 
 // Arduino
@@ -1140,9 +1165,27 @@ async function listenToArduino() {
     }
 }
 
+// Função principal para lidar com botões do Arduino (CORRIGIDA)
 function handleButtonPress(buttonPin) {
     console.log("Botão pressionado no pino:", buttonPin);
-    if (!gameState.currentQuestion || gameState.answerLock) return;
+    if (!gameState.currentQuestion) return;
+    
+    // Verificar duplo clique apenas quando a resposta estiver bloqueada
+    if (gameState.answerLock && buttonPin === 2) {
+        const currentTime = Date.now();
+        
+        if (currentTime - lastButtonAPress < DOUBLE_CLICK_DELAY) {
+            goToNextQuestion();
+            lastButtonAPress = 0;
+            return;
+        }
+        
+        lastButtonAPress = currentTime;
+        return; // Não processar como resposta normal
+    }
+    
+    // Se não for duplo clique ou resposta não está bloqueada, processar normalmente
+    if (gameState.answerLock) return;
     
     const options = elements.optionsContainer.querySelectorAll('.option-btn');
     
@@ -1150,10 +1193,10 @@ function handleButtonPress(buttonPin) {
         let optionIndex = -1;
         
         switch(buttonPin) {
-            case ARDUINO_BUTTONS.SINGLEPLAYER.OPTION_A: optionIndex = 0; break;
-            case ARDUINO_BUTTONS.SINGLEPLAYER.OPTION_B: optionIndex = 1; break;
-            case ARDUINO_BUTTONS.SINGLEPLAYER.OPTION_C: optionIndex = 2; break;
-            case ARDUINO_BUTTONS.SINGLEPLAYER.OPTION_D: optionIndex = 3; break;
+            case 2: optionIndex = 0; break; // Botão A - Opção A
+            case 3: optionIndex = 1; break; // Botão B - Opção B  
+            case 4: optionIndex = 2; break; // Botão C - Opção C
+            case 5: optionIndex = 3; break; // Botão D - Opção D
         }
         
         if (optionIndex >= 0 && optionIndex < options.length) {
@@ -1170,28 +1213,24 @@ function handleButtonPress(buttonPin) {
             checkAnswer(isCorrect);
         }
     } else {
+        // Lógica multiplayer
         let team = null;
         let isCorrect = false;
         
-        if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_A || 
-            buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_B) {
-            
+        if (buttonPin === 2 || buttonPin === 4) {
             if (gameState.multiplayerAnswered.team1) return;
             gameState.multiplayerAnswered.team1 = true;
             team = 'team1';
             
-            const selectedOption = (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM1_A) ? 0 : 1;
+            const selectedOption = (buttonPin === 2) ? 0 : 1;
             isCorrect = options[selectedOption].textContent.includes(gameState.currentQuestion.correctAnswer);
             
-        } 
-        else if (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_A || 
-                 buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_B) {
-            
+        } else if (buttonPin === 3 || buttonPin === 5) {
             if (gameState.multiplayerAnswered.team2) return;
             gameState.multiplayerAnswered.team2 = true;
             team = 'team2';
             
-            const selectedOption = (buttonPin === ARDUINO_BUTTONS.MULTIPLAYER.TEAM2_A) ? 0 : 1;
+            const selectedOption = (buttonPin === 3) ? 0 : 1;
             isCorrect = options[selectedOption].textContent.includes(gameState.currentQuestion.correctAnswer);
         }
         
