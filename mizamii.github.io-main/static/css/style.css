@@ -1,0 +1,1214 @@
+/* Estilos Gerais - Tema Pokémon */
+:root {
+    --dewott-blue: #5ab6d8;
+    --dewott-dark: #2a5773;
+    --dewott-light: #a8e0f0;
+    --floatzel-orange: #f8a145;
+    --floatzel-dark: #b35920;
+    --floatzel-light: #fad7a0;
+    --correct-green: #4caf50;
+    --incorrect-red: #f44336;
+    --pokemon-red: #ff0000;
+    --pokemon-blue: #3b4cca;
+    --pokemon-yellow: #ffde00;
+    --neutral-color: #6c757d;
+    --neutral-light: #8b9aab;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Tema Pokémon Neutro */
+.pokemon-theme {
+    background: linear-gradient(135deg, var(--neutral-light), var(--neutral-color)) !important;
+    position: relative;
+}
+
+/* Tema Dewott */
+.dewott-theme {
+    background: linear-gradient(135deg, var(--dewott-light), var(--dewott-blue)) !important;
+}
+
+/* Tema Floatzel */
+.floatzel-theme {
+    background: linear-gradient(135deg, var(--floatzel-light), var(--floatzel-orange)) !important;
+}
+
+.pokemon-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.pokeball {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to bottom, #ff0000 0%, #ff0000 50%, #ffffff 50%, #ffffff 100%);
+    border-radius: 50%;
+    border: 3px solid #000;
+}
+
+.pokeball::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 3px solid #000;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.pokeball::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #000;
+    z-index: 1;
+}
+
+.pokeball-1 {
+    top: 20%;
+    left: 10%;
+}
+
+.pokeball-2 {
+    top: 60%;
+    right: 15%;
+    width: 60px;
+    height: 60px;
+}
+
+.pokeball-3 {
+    bottom: 20%;
+    left: 20%;
+    width: 40px;
+    height: 40px;
+}
+
+/* Telas de Seleção */
+.selection-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.logo {
+    height: 80px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Botões de Modo */
+.mode-options {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mode-btn {
+    width: 200px;
+    height: 250px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.mode-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.mode-btn img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+}
+
+.mode-btn:hover img {
+    transform: scale(1.1);
+}
+
+.mode-btn span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.singleplayer-btn {
+    border: 3px solid var(--neutral-color);
+}
+
+.multiplayer-btn {
+    border: 3px solid var(--neutral-color);
+}
+
+/* Estilos para seleção de dificuldade */
+.difficulty-options {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.difficulty-btn {
+    width: 200px;
+    height: 150px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border: 3px solid var(--neutral-color);
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.difficulty-btn span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 0.5rem;
+}
+
+.difficulty-btn p {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+.easy-btn:hover {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.medium-btn:hover {
+    border-color: #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.hard-btn:hover {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+/* Tela de Missão */
+.mission-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.mission-container {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    border: 3px solid var(--neutral-color);
+}
+
+.mission-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.mission-container h2 {
+    color: var(--neutral-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.start-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--neutral-color), var(--neutral-light));
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Seleção de Pokémon */
+.pokemon-options {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.pokemon-option {
+    width: 220px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid var(--neutral-color);
+}
+
+.pokemon-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.pokemon-option.dewott-option:hover {
+    border-color: var(--dewott-blue);
+    background: rgba(90, 182, 216, 0.1);
+}
+
+.pokemon-option.floatzel-option:hover {
+    border-color: var(--floatzel-orange);
+    background: rgba(248, 161, 69, 0.1);
+}
+
+.pokemon-img-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+}
+
+.pokemon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    position: relative;
+}
+
+.shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.dewott-option.selected {
+    border: 3px solid var(--dewott-blue);
+    background: rgba(90, 182, 216, 0.15);
+}
+
+.floatzel-option.selected {
+    border: 3px solid var(--floatzel-orange);
+    background: rgba(248, 161, 69, 0.15);
+}
+
+.type-badge {
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.water {
+    background: linear-gradient(to right, #4592c4, #1a6fc9);
+}
+
+.pokemon-desc {
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #666;
+}
+
+/* Botão Arduino na tela inicial */
+.initial-controls {
+    margin-top: 2rem;
+}
+
+.arduino-btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(to right, var(--neutral-color), var(--neutral-light));
+    color: white;
+    text-decoration: none;
+}
+
+.arduino-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Tela do Jogo */
+#game-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Tema Singleplayer */
+.singleplayer.dewott-theme {
+    background: linear-gradient(135deg, var(--dewott-light), var(--dewott-blue));
+}
+
+.singleplayer.floatzel-theme {
+    background: linear-gradient(135deg, var(--floatzel-light), var(--floatzel-orange));
+}
+
+/* Multiplayer Layout - CORES SÓLIDAS */
+.multiplayer-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    position: relative;
+}
+
+.multiplayer-layout::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--dewott-blue);
+    z-index: -1;
+}
+
+.multiplayer-layout::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--floatzel-orange);
+    z-index: -1;
+}
+
+/* Cabeçalho do Jogo */
+#game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    z-index: 10;
+}
+
+.timer-box {
+    background: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 2px solid var(--pokemon-red);
+}
+
+.scores {
+    display: flex;
+    gap: 1rem;
+}
+
+.score-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.score-box img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.dewott-score {
+    color: var(--dewott-dark);
+    border: 2px solid var(--dewott-blue);
+}
+
+.floatzel-score {
+    color: var(--floatzel-dark);
+    border: 2px solid var(--floatzel-orange);
+}
+
+.player-score {
+    border: 2px solid var(--dewott-blue);
+}
+
+.opponent-score {
+    border: 2px solid var(--floatzel-orange);
+}
+
+/* Área da Pergunta */
+#question-area {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.question-box {
+    background: rgba(255,255,255,0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--pokemon-red);
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.options-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Modo Singleplayer - 4 opções (2x2) */
+.singleplayer .options-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Modo Multiplayer - 2 opções (1 coluna) */
+.multiplayer-layout .options-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.option-btn {
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: white;
+    color: #333;
+    font-weight: 500;
+    min-height: 70px;
+}
+
+.option-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.singleplayer .option-btn {
+    border: 3px solid;
+}
+
+.singleplayer.dewott-theme .option-btn {
+    border-color: var(--dewott-blue);
+}
+
+.singleplayer.floatzel-theme .option-btn {
+    border-color: var(--floatzel-orange);
+}
+
+.multiplayer-layout .option-btn {
+    border: 3px solid #ddd;
+    width: 100%;
+}
+
+/* Estilos para respostas */
+.correct {
+    background: var(--correct-green) !important;
+    color: white !important;
+    border-color: transparent !important;
+    transform: scale(1.02);
+}
+
+.incorrect {
+    background: var(--incorrect-red) !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+
+.selected-correct {
+    border: 3px solid #2196F3 !important;
+    background-color: #e3f2fd !important;
+    color: #1976d2 !important;
+}
+
+.selected-incorrect {
+    border: 3px solid #f44336 !important;
+    background-color: #ffebee !important;
+    color: #c62828 !important;
+}
+
+.status-message {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.95);
+    border: 3px solid var(--pokemon-red);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Controles */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.restart-btn, .back-to-home-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+}
+
+.restart-btn {
+    background: linear-gradient(to right, var(--pokemon-red), var(--floatzel-orange));
+    color: white;
+}
+
+.back-to-home-btn {
+    background: linear-gradient(to right, #6c757d, #495057);
+    color: white;
+}
+
+.restart-btn:hover, .back-to-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.restart-btn:hover {
+    background: linear-gradient(to right, #e60000, #e68900);
+}
+
+.back-to-home-btn:hover {
+    background: linear-gradient(to right, #5a6268, #343a40);
+}
+
+/* GIFs de Pontuação */
+.point-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+.point-animation.dewott-point {
+    background: rgba(90, 182, 216, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 5px solid var(--dewott-dark);
+}
+
+.point-animation.floatzel-point {
+    background: rgba(248, 161, 69, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 5px solid var(--floatzel-dark);
+}
+
+.point-animation img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.point-animation h3 {
+    color: white;
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* Estilos para o formulário de pontuação */
+#score-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+#player-name, #player-email {
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--pokemon-red);
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+#score-form button {
+    padding: 0.8rem 2rem;
+    background: var(--pokemon-red);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#score-form button:hover {
+    background: #e60000;
+    transform: translateY(-2px);
+}
+
+/* Botão próxima pergunta */
+.next-question-btn {
+    padding: 1rem 2rem;
+    background: var(--pokemon-red);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.next-question-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: #e60000;
+}
+
+/* NOVOS ESTILOS PARA O PÓDIO */
+.difficulty-sections {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.difficulty-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid;
+    text-align: center;
+}
+
+.easy-title {
+    color: #4caf50;
+    border-bottom-color: #4caf50;
+}
+
+.medium-title {
+    color: #ff9800;
+    border-bottom-color: #ff9800;
+}
+
+.hard-title {
+    color: #f44336;
+    border-bottom-color: #f44336;
+}
+
+.podium-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.podium-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid var(--pokemon-red);
+}
+
+.podium-position {
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 50px;
+    text-align: center;
+}
+
+.position-1 { 
+    color: gold; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.position-2 { 
+    color: silver; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.position-3 { 
+    color: #cd7f32; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.podium-info {
+    flex-grow: 1;
+    text-align: left;
+    padding: 0 1rem;
+}
+
+.podium-name {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.podium-team {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+}
+
+.team-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.podium-score {
+    font-weight: bold;
+    min-width: 80px;
+    color: var(--pokemon-red);
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+.no-scores {
+    color: #666;
+    padding: 2rem;
+    font-style: italic;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* MELHORIAS EXISTENTES */
+.initial-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.arduino-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, var(--neutral-color), var(--neutral-light));
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.arduino-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .mode-options, .pokemon-options, .difficulty-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .singleplayer .options-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .title {
+        font-size: 2rem;
+        text-align: center;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .pokeball-1, .pokeball-2, .pokeball-3 {
+        display: none;
+    }
+    
+    #game-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .scores {
+        justify-content: center;
+    }
+    
+    .question-box {
+        font-size: 1.3rem;
+        padding: 1.5rem;
+    }
+    
+    .option-btn {
+        font-size: 1rem;
+        padding: 1rem;
+        min-height: 60px;
+    }
+    
+    .difficulty-sections {
+        flex-direction: column;
+    }
+    
+    .difficulty-section {
+        min-width: auto;
+        margin: 0 1rem;
+    }
+    
+    .podium-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+        padding: 1.2rem;
+    }
+    
+    .podium-info {
+        text-align: center;
+        padding: 0;
+    }
+    
+    .podium-team {
+        justify-content: center;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .restart-btn, .back-to-home-btn {
+        width: 200px;
+        justify-content: center;
+    }
+    
+    .point-animation img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .point-animation h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .mode-btn {
+        width: 180px;
+        height: 220px;
+    }
+    
+    .mode-btn img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .pokemon-option {
+        width: 180px;
+        padding: 1rem;
+    }
+    
+    .pokemon-img-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .question-box {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+    
+    .point-animation {
+        padding: 1rem;
+    }
+    
+    .point-animation img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .point-animation h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Animações */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Estados de loading */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--pokemon-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pokemon-red);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e60000;
+}
+
+/* Focus states para acessibilidade */
+button:focus, 
+.option-btn:focus,
+.arduino-btn:focus {
+    outline: 3px solid var(--pokemon-yellow);
+    outline-offset: 2px;
+}
+
+input:focus {
+    outline: 3px solid var(--dewott-blue);
+    outline-offset: 1px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .pokemon-theme {
+        background: #000 !important;
+    }
+    
+    .option-btn {
+        border: 2px solid #000;
+    }
+    
+    .correct {
+        background: #008000 !important;
+    }
+    
+    .incorrect {
+        background: #ff0000 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .mode-btn:hover,
+    .option-btn:hover,
+    .arduino-btn:hover,
+    .restart-btn:hover,
+    .back-to-home-btn:hover {
+        transform: none;
+    }
+    
+    .point-animation {
+        animation: none;
+        opacity: 1;
+    }
+}

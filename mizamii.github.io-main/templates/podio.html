@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pódio - Quiz Pokémon Premium</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffde00 0%, #b3a125 50%, #3b4cca 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .podium-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .logo-container {
+            margin-bottom: 1rem;
+        }
+        
+        .logo {
+            height: 60px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+        
+        .podium-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .difficulty-sections {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid;
+        }
+        
+        .easy-title {
+            color: #4caf50;
+            border-bottom-color: #4caf50;
+        }
+        
+        .medium-title {
+            color: #ff9800;
+            border-bottom-color: #ff9800;
+        }
+        
+        .hard-title {
+            color: #f44336;
+            border-bottom-color: #f44336;
+        }
+        
+        .podium-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .podium-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .podium-position {
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 40px;
+            text-align: center;
+        }
+        
+        .position-1 { color: gold; }
+        .position-2 { color: silver; }
+        .position-3 { color: #cd7f32; }
+        
+        .podium-info {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 1rem;
+        }
+        
+        .podium-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .podium-team {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .team-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .podium-score {
+            font-weight: bold;
+            min-width: 60px;
+            color: #ff0000;
+        }
+        
+        .no-scores {
+            color: #666;
+            padding: 1rem;
+            font-style: italic;
+        }
+        
+        .back-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(to right, #3b4cca, #5ab6d8);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .difficulty-sections {
+                flex-direction: column;
+            }
+            
+            .difficulty-section {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="podium-container">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo" class="logo">
+        </div>
+        <h1 class="podium-title"><span class="trophy-icon">🏆</span> Pódio Pokémon</h1>
+        
+        <div class="difficulty-sections">
+            <div class="difficulty-section">
+                <h2 class="section-title easy-title">Fácil</h2>
+                <div id="easy-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-section">
+                <h2 class="section-title medium-title">Médio</h2>
+                <div id="medium-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-section">
+                <h2 class="section-title hard-title">Difícil</h2>
+                <div id="hard-scores" class="podium-list">
+                    <p class="loading">Carregando...</p>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-btn">Voltar ao Início</a>
+    </div>
+
+    <script>
+        // URLs das imagens dos times Pokémon
+        const teamImages = {
+            dewott: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/502.png",
+            floatzel: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/419.png"
+        };
+
+        // Função para carregar as pontuações
+        async function loadScores() {
+            try {
+                const response = await fetch('/api/scores');
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar pontuações');
+                }
+                const scores = await response.json();
+                console.log('Pontuações carregadas:', scores);
+                
+                // Separar pontuações por dificuldade
+                const easyScores = scores.filter(s => s.difficulty === 'easy');
+                const mediumScores = scores.filter(s => s.difficulty === 'medium');
+                const hardScores = scores.filter(s => s.difficulty === 'hard');
+                
+                // Ordenar por pontuação (maior primeiro) e depois por tempo (menor primeiro)
+                const sortScores = (arr) => arr.sort((a, b) => {
+                    if (b.score !== a.score) return b.score - a.score;
+                    return a.time_taken - b.time_taken;
+                });
+                
+                // Exibir pontuações
+                displayScores(sortScores(easyScores), 'easy-scores');
+                displayScores(sortScores(mediumScores), 'medium-scores');
+                displayScores(sortScores(hardScores), 'hard-scores');
+                
+            } catch (error) {
+                console.error('Erro ao carregar pontuações:', error);
+                document.querySelectorAll('.podium-list').forEach(el => {
+                    el.innerHTML = '<p class="no-scores">Erro ao carregar pontuações</p>';
+                });
+            }
+        }
+
+        // Função para exibir as pontuações
+        function displayScores(scores, containerId) {
+            const container = document.getElementById(containerId);
+            
+            if (!scores || scores.length === 0) {
+                container.innerHTML = '<p class="no-scores">Nenhuma pontuação ainda</p>';
+                return;
+            }
+            
+            // Pegar apenas as top 10 pontuações
+            const topScores = scores.slice(0, 10);
+            
+            container.innerHTML = topScores.map((score, index) => {
+                const positionClass = index === 0 ? 'position-1' : 
+                                    index === 1 ? 'position-2' : 
+                                    index === 2 ? 'position-3' : '';
+                
+                // Formatar o tempo (segundos para mm:ss)
+                const minutes = Math.floor(score.time_taken / 60);
+                const seconds = score.time_taken % 60;
+                const timeFormatted = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                return `
+                    <div class="podium-item">
+                        <span class="podium-position ${positionClass}">${index + 1}º</span>
+                        <div class="podium-info">
+                            <div class="podium-name">${score.name}</div>
+                            <div class="podium-team">
+                                <img src="${teamImages[score.team]}" alt="${score.team}" class="team-icon">
+                                ${score.team === 'dewott' ? 'Dewott' : 'Floatzel'}
+                            </div>
+                        </div>
+                        <span class="podium-score">${score.score} pts</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Carregar pontuações quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadScores);
+    </script>
+</body>
+</html>

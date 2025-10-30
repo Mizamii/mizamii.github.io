@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Pokémon Premium</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Tela de Seleção de Modo -->
+    <div id="mode-selection" class="screen selection-screen pokemon-theme">
+        <div class="pokemon-background">
+            <div class="pokeball pokeball-1"></div>
+            <div class="pokeball pokeball-2"></div>
+            <div class="pokeball pokeball-3"></div>
+        </div>
+        
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo" class="logo">
+        </div>
+        
+        <h1 class="title">QUIZ POKÉMON PREMIUM</h1>
+        <div class="mode-options">
+            <button class="mode-btn singleplayer-btn" onclick="selectMode('singleplayer')">
+                <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/502.png" alt="Aventura Solo">
+                <span>Aventura Solo</span>
+            </button>
+            <button class="mode-btn multiplayer-btn" onclick="selectMode('multiplayer')">
+                <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/419.png" alt="Duelo Pokémon">
+                <span>Duelo Pokémon</span>
+            </button>
+        </div>
+        
+        <!-- Botão Arduino na tela inicial -->
+        <div class="controls initial-controls">
+            <button id="connect-btn" class="arduino-btn">
+                <span>🎮 Conectar Arduino</span>
+            </button>
+            <!-- Adicionar este botão -->
+            <a href="/podium" class="arduino-btn" style="text-decoration: none;">
+                <span>🏆 Ver Pódio</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Tela de Seleção de Dificuldade -->
+    <div id="difficulty-selection" class="screen selection-screen pokemon-theme" style="display:none">
+        <div class="pokemon-background">
+            <div class="pokeball pokeball-1"></div>
+            <div class="pokeball pokeball-2"></div>
+        </div>
+        
+        <h1 class="title">ESCOLHA A DIFICULDADE</h1>
+        <div class="difficulty-options">
+            <button class="difficulty-btn easy-btn" onclick="selectDifficulty('easy')">
+                <span>Fácil</span>
+                <p>Perguntas simples para iniciantes</p>
+            </button>
+            <button class="difficulty-btn medium-btn" onclick="selectDifficulty('medium')">
+                <span>Médio</span>
+                <p>Desafio moderado</p>
+            </button>
+            <button class="difficulty-btn hard-btn" onclick="selectDifficulty('hard')">
+                <span>Difícil</span>
+                <p>Para os experts em Pokémon</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Tela de Seleção de Pokémon -->
+    <div id="pokemon-selection" class="screen selection-screen pokemon-theme" style="display:none">
+        <div class="pokemon-background">
+            <div class="pokeball pokeball-1"></div>
+            <div class="pokeball pokeball-2"></div>
+        </div>
+        
+        <h1 class="title">ESCOLHA SEU POKÉMON</h1>
+        <div class="pokemon-options">
+            <div class="pokemon-option dewott-option" onclick="selectPokemon('dewott')">
+                <div class="pokemon-img-container">
+                    <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/502.png" alt="Dewott" class="pokemon-img">
+                    <div class="shine"></div>
+                </div>
+                <h3>Dewott</h3>
+                <div class="type-badge water">Água</div>
+                <p class="pokemon-desc">Inteligente e disciplinado</p>
+            </div>
+            <div class="pokemon-option floatzel-option" onclick="selectPokemon('floatzel')">
+                <div class="pokemon-img-container">
+                    <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/419.png" alt="Floatzel" class="pokemon-img">
+                    <div class="shine"></div>
+                </div>
+                <h3>Floatzel</h3>
+                <div class="type-badge water">Água</div>
+                <p class="pokemon-desc">Rápido e competitivo</p>
+            </div>
+        </div>
+        <!-- Adicione este botão de continuar -->
+        <button id="continue-pokemon-btn" class="start-btn" style="margin-top: 2rem; display: none;" onclick="showMission()">
+            <span>Continuar →</span>
+        </button>
+    </div>
+
+    <!-- Tela de Missão -->
+    <div id="mission-screen" class="screen mission-screen pokemon-theme" style="display:none">
+        <div class="pokemon-background">
+            <div class="pokeball pokeball-1"></div>
+            <div class="pokeball pokeball-2"></div>
+        </div>
+        
+        <div class="mission-container">
+            <h2>SUA MISSÃO</h2>
+            <p id="mission-text" class="mission-text"></p>
+        </div>
+        <button id="start-game-btn" class="start-btn">
+            <span>Iniciar Batalha →</span>
+        </button>
+    </div>
+
+    <!-- Tela do Jogo -->
+    <div id="game-container" style="display:none">
+        <!-- Cabeçalho -->
+        <div id="game-header">
+            <div id="timer" class="timer-box">
+                <span>⏱️</span>
+                <span id="time">20</span>s
+            </div>
+            <div class="scores">
+                <div id="player-score" class="score-box dewott-score">
+                    <img id="player-pokemon-img" src="" alt="Pokémon">
+                    <span id="player-points">0</span>
+                </div>
+                <div id="opponent-score" class="score-box floatzel-score" style="display:none">
+                    <img id="opponent-pokemon-img" src="" alt="Pokémon Oponente">
+                    <span id="opponent-points">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área da Pergunta -->
+        <div id="question-area">
+            <div id="question" class="question-box"></div>
+            <div id="options-container" class="options-grid"></div>
+            <div id="status" class="status-message"></div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls">
+            <button id="back-to-home-btn" class="back-to-home-btn" style="display: none;">
+                <span>🏠 Voltar ao Início</span>
+            </button>
+            <button id="restart-btn" class="restart-btn">
+                <span>🔄 Reiniciar</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+</body>
+</html>
