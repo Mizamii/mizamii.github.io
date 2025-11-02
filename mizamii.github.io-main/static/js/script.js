@@ -1,252 +1,468 @@
+
 // Banco de Perguntas Ampliado com Dificuldade - TEMA POKÉMON
 const questions = {
     singleplayer: {
         easy: [
             {
-                question: "Qual o nome do professor que entrega o primeiro Pokémon em Kanto?",
-                correctAnswer: "Professor Carvalho",
-                incorrectOptions: ["Professor Juniper", "Professor Ivy", "Professor Elm"],
+                question: "Por que o céu é azul?",
+                correctAnswer: "Porque a luz do sol se espalha na atmosfera",
+                incorrectOptions: ["Porque Deus pintou assim", "Porque o mar reflete nele", "Por causa das nuvens"],
                 difficulty: "easy"
             },
             {
-                question: "Qual é o tipo do Pokémon Pikachu?",
-                correctAnswer: "Elétrico",
-                incorrectOptions: ["Água", "Fogo", "Pedra"],
+                question: "Qual é a capital do Brasil?",
+                correctAnswer: "Brasília",
+                incorrectOptions: ["Rio de Janeiro", "São Paulo", "Salvador"],
                 difficulty: "easy"
             },
             {
-                question: "Qual destes Pokémon é do tipo Fogo?",
-                correctAnswer: "Charmander",
-                incorrectOptions: ["Squirtle", "Bulbasaur", "Pidgey"],
+                question: "Quantos dias tem uma semana?",
+                correctAnswer: "7",
+                incorrectOptions: ["5", "6", "8"],
                 difficulty: "easy"
             },
             {
-                question: "Quantas evoluções o Pokémon Eevee pode ter?",
-                correctAnswer: "8",
-                incorrectOptions: ["3", "5", "10"],
+                question: "Qual é a cor do céu em um dia claro?",
+                correctAnswer: "Azul",
+                incorrectOptions: ["Verde", "Vermelho", "Amarelo"],
                 difficulty: "easy"
             },
             {
-                question: "Qual é a pedra evolutiva que evolui Vulpix para Ninetales?",
-                correctAnswer: "Pedra do Fogo",
-                incorrectOptions: ["Pedra da Água", "Pedra do Trovão", "Pedra da Lua"],
+                question: "Quantas patas tem um cachorro?",
+                correctAnswer: "4",
+                incorrectOptions: ["2", "6", "8"],
                 difficulty: "easy"
             },
             {
-                question: "Qual Pokémon é conhecido como o Pokémon Semente?",
-                correctAnswer: "Bulbasaur",
-                incorrectOptions: ["Charmander", "Squirtle", "Caterpie"],
+                question: "Que animal mia?",
+                correctAnswer: "Gato",
+                incorrectOptions: ["Cachorro", "Vaca", "Pássaro"],
                 difficulty: "easy"
             },
             {
-                question: "Qual é o primeiro Pokémon na Pokédex Nacional?",
-                correctAnswer: "Bulbasaur",
-                incorrectOptions: ["Pikachu", "Charmander", "Mew"],
+                question: "Que som faz a vaca?",
+                correctAnswer: "Muu",
+                incorrectOptions: ["Au au", "Miau", "Cócóricó"],
                 difficulty: "easy"
             },
             {
-                question: "Qual Pokémon evolui para Butterfree?",
-                correctAnswer: "Metapod",
-                incorrectOptions: ["Caterpie", "Weedle", "Kakuna"],
+                question: "Qual fruta é conhecida por ser amarela?",
+                correctAnswer: "Banana",
+                incorrectOptions: ["Maçã", "Uva", "Laranja"],
                 difficulty: "easy"
             },
             {
-                question: "Qual tipo é super efetivo contra Pokémon do tipo Água?",
-                correctAnswer: "Elétrico",
-                incorrectOptions: ["Fogo", "Grama", "Normal"],
+                question: "Quantos dedos temos em uma mão?",
+                correctAnswer: "5",
+                incorrectOptions: ["4", "6", "10"],
                 difficulty: "easy"
             },
             {
-                question: "Qual Pokémon é a evolução do Pikachu?",
-                correctAnswer: "Raichu",
-                incorrectOptions: ["Electabuzz", "Jolteon", "Zapdos"],
+                question: "Que estação vem depois do verão?",
+                correctAnswer: "Outono",
+                incorrectOptions: ["Primavera", "Inverno", "Chuvosa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal tem listras pretas e brancas?",
+                correctAnswer: "Zebra",
+                incorrectOptions: ["Leão", "Elefante", "Girafa"],
+                difficulty: "easy"
+            },
+            {
+                question: "O que as plantas precisam para crescer?",
+                correctAnswer: "Água e sol",
+                incorrectOptions: ["Doces e bolos", "Brinquedos", "Roupas"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que forma tem uma bola?",
+                correctAnswer: "Redonda",
+                incorrectOptions: ["Quadrada", "Triangular", "Retangular"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que cor é uma folha saudável?",
+                correctAnswer: "Verde",
+                incorrectOptions: ["Azul", "Vermelha", "Roxa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal vive na água e tem barbatanas?",
+                correctAnswer: "Peixe",
+                incorrectOptions: ["Gato", "Pássaro", "Coelho"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que dia vem depois de terça-feira?",
+                correctAnswer: "Quarta-feira",
+                incorrectOptions: ["Segunda-feira", "Sexta-feira", "Domingo"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que cor se forma ao misturar azul e amarelo?",
+                correctAnswer: "Verde",
+                incorrectOptions: ["Roxo", "Laranja", "Rosa"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que animal é o rei da selva?",
+                correctAnswer: "Leão",
+                incorrectOptions: ["Macaco", "Elefante", "Tigre"],
+                difficulty: "easy"
+            },
+            {
+                question: "Que fruto é usado para fazer vinho?",
+                correctAnswer: "Uva",
+                incorrectOptions: ["Maçã", "Laranja", "Banana"],
+                difficulty: "easy"
+            },
+            {
+                question: "Quantos meses tem um ano?",
+                correctAnswer: "12",
+                incorrectOptions: ["6", "10", "24"],
                 difficulty: "easy"
             }
         ],
         medium: [
             {
-                question: "Quantas gerações de Pokémon existem atualmente?",
-                correctAnswer: "9",
-                incorrectOptions: ["5", "7", "10"],
+                question: "Quem pintou a Mona Lisa?",
+                correctAnswer: "Leonardo da Vinci",
+                incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
                 difficulty: "medium"
             },
             {
-                question: "Qual Pokémon lendário é conhecido como a Deusa dos Mares?",
-                correctAnswer: "Lugia",
-                incorrectOptions: ["Ho-Oh", "Kyogre", "Suicune"],
+                question: "Qual é o maior planeta do sistema solar?",
+                correctAnswer: "Júpiter",
+                incorrectOptions: ["Saturno", "Terra", "Marte"],
                 difficulty: "medium"
             },
             {
-                question: "Em qual região fica a cidade de Pewter?",
-                correctAnswer: "Kanto",
-                incorrectOptions: ["Johto", "Hoenn", "Sinnoh"],
+                question: "Em que ano o homem pisou na Lua pela primeira vez?",
+                correctAnswer: "1969",
+                incorrectOptions: ["1959", "1979", "1989"],
                 difficulty: "medium"
             },
             {
-                question: "Qual destes NÃO é um Pokémon inicial?",
-                correctAnswer: "Eevee",
-                incorrectOptions: ["Chikorita", "Treecko", "Piplup"],
+                question: "Qual é o maior oceano do mundo?",
+                correctAnswer: "Oceano Pacífico",
+                incorrectOptions: ["Oceano Atlântico", "Oceano Índico", "Oceano Ártico"],
                 difficulty: "medium"
             },
             {
-                question: "Qual o nome do time vilão na primeira geração?",
-                correctAnswer: "Team Rocket",
-                incorrectOptions: ["Team Magma", "Team Aqua", "Team Plasma"],
+                question: "Quantos elementos tem a tabela periódica?",
+                correctAnswer: "118",
+                incorrectOptions: ["100", "150", "92"],
                 difficulty: "medium"
             },
             {
-                question: "Qual Pokémon tem o número #151 na Pokédex de Kanto?",
-                correctAnswer: "Mew",
-                incorrectOptions: ["Mewtwo", "Arceus", "Celebi"],
+                question: "Qual é a capital da Austrália?",
+                correctAnswer: "Camberra",
+                incorrectOptions: ["Sydney", "Melbourne", "Perth"],
                 difficulty: "medium"
             },
             {
-                question: "Qual tipo é imune a ataques do tipo Fantasma?",
-                correctAnswer: "Normal",
-                incorrectOptions: ["Lutador", "Psíquico", "Sombrio"],
+                question: "Quem escreveu 'Dom Quixote'?",
+                correctAnswer: "Miguel de Cervantes",
+                incorrectOptions: ["William Shakespeare", "Machado de Assis", "Gabriel García Márquez"],
                 difficulty: "medium"
             },
             {
-                question: "Qual destes Pokémon é do tipo Dragão?",
-                correctAnswer: "Dragonite",
-                incorrectOptions: ["Charizard", "Gyarados", "Aerodactyl"],
+                question: "Qual é o metal mais condutor de eletricidade?",
+                correctAnswer: "Prata",
+                incorrectOptions: ["Cobre", "Ouro", "Alumínio"],
                 difficulty: "medium"
             },
             {
-                question: "Qual cidade é conhecida como a Cidade do Amor?",
-                correctAnswer: "Lavender Town",
-                incorrectOptions: ["Celadon City", "Saffron City", "Vermilion City"],
+                question: "Em que continente fica o Egito?",
+                correctAnswer: "África",
+                incorrectOptions: ["Ásia", "Europa", "América do Sul"],
                 difficulty: "medium"
             },
             {
-                question: "Qual Pokémon evolui usando uma Pedra da Água?",
-                correctAnswer: "Poliwhirl",
-                incorrectOptions: ["Staryu", "Shellder", "Horsea"],
+                question: "Qual é a montanha mais alta do mundo?",
+                correctAnswer: "Monte Everest",
+                incorrectOptions: ["Monte Kilimanjaro", "Monte Fuji", "Monte McKinley"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quantos lados tem um heptágono?",
+                correctAnswer: "7",
+                incorrectOptions: ["5", "6", "8"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior mamífero do mundo?",
+                correctAnswer: "Baleia-azul",
+                incorrectOptions: ["Elefante-africano", "Girafa", "Urso-polar"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem foi o primeiro presidente do Brasil?",
+                correctAnswer: "Deodoro da Fonseca",
+                incorrectOptions: ["Getúlio Vargas", "Juscelino Kubitschek", "Prudente de Morais"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o símbolo químico do oxigênio?",
+                correctAnswer: "O",
+                incorrectOptions: ["Ox", "Og", "Oi"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o país mais populoso do mundo?",
+                correctAnswer: "Índia",
+                incorrectOptions: ["China", "Estados Unidos", "Indonésia"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem descobriu a penicilina?",
+                correctAnswer: "Alexander Fleming",
+                incorrectOptions: ["Louis Pasteur", "Marie Curie", "Robert Koch"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é o maior deserto do mundo?",
+                correctAnswer: "Antártida",
+                incorrectOptions: ["Saara", "Arábico", "Gobi"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quantos ossos tem o corpo humano?",
+                correctAnswer: "206",
+                incorrectOptions: ["200", "250", "300"],
+                difficulty: "medium"
+            },
+            {
+                question: "Qual é a capital do Canadá?",
+                correctAnswer: "Ottawa",
+                incorrectOptions: ["Toronto", "Vancouver", "Montreal"],
+                difficulty: "medium"
+            },
+            {
+                question: "Quem pintou 'O Grito'?",
+                correctAnswer: "Edvard Munch",
+                incorrectOptions: ["Vincent van Gogh", "Pablo Picasso", "Salvador Dalí"],
                 difficulty: "medium"
             }
         ],
         hard: [
             {
-                question: "Qual é o nome do criador de Pokémon?",
-                correctAnswer: "Satoshi Tajiri",
-                incorrectOptions: ["Shigeru Miyamoto", "Ken Sugimori", "Junichi Masuda"],
+                question: "Qual é a fórmula química da água?",
+                correctAnswer: "H₂O",
+                incorrectOptions: ["CO₂", "NaCl", "O₂"],
                 difficulty: "hard"
             },
             {
-                question: "Qual Pokémon tem a maior quantidade de formas diferentes?",
-                correctAnswer: "Unown",
-                incorrectOptions: ["Castform", "Deoxys", "Rotom"],
+                question: "Quem escreveu '1984'?",
+                correctAnswer: "George Orwell",
+                incorrectOptions: ["Aldous Huxley", "Ray Bradbury", "J.R.R. Tolkien"],
                 difficulty: "hard"
             },
             {
-                question: "Em que ano foi lançado o primeiro jogo de Pokémon?",
-                correctAnswer: "1996",
-                incorrectOptions: ["1995", "1997", "1998"],
+                question: "Qual é a capital do Butão?",
+                correctAnswer: "Thimbu",
+                incorrectOptions: ["Katmandu", "Daca", "Islamabad"],
                 difficulty: "hard"
             },
             {
-                question: "Qual Pokémon tem a habilidade 'Wonder Guard'?",
-                correctAnswer: "Shedinja",
-                incorrectOptions: ["Ninjask", "Yanma", "Scizor"],
+                question: "Qual é o elemento químico com o símbolo 'Au'?",
+                correctAnswer: "Ouro",
+                incorrectOptions: ["Prata", "Alumínio", "Cobre"],
                 difficulty: "hard"
             },
             {
-                question: "Quantos pontos de dano causa o movimento 'Self-Destruct'?",
-                correctAnswer: "200",
-                incorrectOptions: ["150", "250", "300"],
+                question: "Quem descobriu a estrutura do DNA?",
+                correctAnswer: "Watson e Crick",
+                incorrectOptions: ["Einstein e Newton", "Darwin e Mendel", "Curie e Pasteur"],
                 difficulty: "hard"
             },
             {
-                question: "Qual destes NÃO é um Pokémon mítico?",
-                correctAnswer: "Latias",
-                incorrectOptions: ["Celebi", "Jirachi", "Manaphy"],
+                question: "Qual é a velocidade da luz no vácuo?",
+                correctAnswer: "299.792.458 m/s",
+                incorrectOptions: ["150.000.000 m/s", "450.000.000 m/s", "100.000.000 m/s"],
                 difficulty: "hard"
             },
             {
-                question: "Qual o nome do campeão da região de Sinnoh?",
-                correctAnswer: "Cynthia",
-                incorrectOptions: ["Steven", "Wallace", "Alder"],
+                question: "Quem foi o autor de 'O Príncipe'?",
+                correctAnswer: "Nicolau Maquiavel",
+                incorrectOptions: ["Thomas Hobbes", "John Locke", "Jean-Jacques Rousseau"],
                 difficulty: "hard"
             },
             {
-                question: "Qual Pokémon tem o maior status base de Ataque?",
-                correctAnswer: "Deoxys-Ataque",
-                incorrectOptions: ["Rayquaza", "Mewtwo", "Groudon"],
+                question: "Qual é a unidade de medida da resistência elétrica?",
+                correctAnswer: "Ohm",
+                incorrectOptions: ["Volt", "Ampère", "Watt"],
                 difficulty: "hard"
             },
             {
-                question: "Qual tipo foi introduzido na segunda geração?",
-                correctAnswer: "Sombrio",
-                incorrectOptions: ["Aço", "Fada", "Psíquico"],
+                question: "Em que ano ocorreu a Revolução Francesa?",
+                correctAnswer: "1789",
+                incorrectOptions: ["1776", "1799", "1812"],
                 difficulty: "hard"
             },
             {
-                question: "Qual Pokémon é conhecido como 'The Continent Pokémon'?",
-                correctAnswer: "Groudon",
-                incorrectOptions: ["Kyogre", "Rayquaza", "Regigigas"],
+                question: "Qual é o país com a maior área territorial do mundo?",
+                correctAnswer: "Rússia",
+                incorrectOptions: ["Canadá", "China", "Estados Unidos"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem compôs a 'Nona Sinfonia'?",
+                correctAnswer: "Ludwig van Beethoven",
+                incorrectOptions: ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Frédéric Chopin"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o processo de divisão celular que forma gametas?",
+                correctAnswer: "Meiose",
+                incorrectOptions: ["Mitose", "Clivagem", "Fissão binária"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a capital da Mongólia?",
+                correctAnswer: "Ulan Bator",
+                incorrectOptions: ["Astana", "Bishkek", "Dushanbe"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem foi o primeiro imperador de Roma?",
+                correctAnswer: "Augusto",
+                incorrectOptions: ["Júlio César", "Nero", "Constantino"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o elemento mais abundante na crosta terrestre?",
+                correctAnswer: "Oxigênio",
+                incorrectOptions: ["Silício", "Alumínio", "Ferro"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem desenvolveu a teoria da relatividade?",
+                correctAnswer: "Albert Einstein",
+                incorrectOptions: ["Isaac Newton", "Niels Bohr", "Stephen Hawking"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o maior lago de água doce do mundo?",
+                correctAnswer: "Lago Superior",
+                incorrectOptions: ["Lago Vitória", "Lago Tanganica", "Lago Baikal"],
+                difficulty: "hard"
+            },
+            {
+                question: "Quem escreveu 'Ulisses'?",
+                correctAnswer: "James Joyce",
+                incorrectOptions: ["Virginia Woolf", "T.S. Eliot", "Franz Kafka"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é a fórmula do teorema de Pitágoras?",
+                correctAnswer: "a² + b² = c²",
+                incorrectOptions: ["E = mc²", "F = ma", "V = πr²h"],
+                difficulty: "hard"
+            },
+            {
+                question: "Qual é o mineral mais duro da natureza?",
+                correctAnswer: "Diamante",
+                incorrectOptions: ["Quartzo", "Rubi", "Safira"],
                 difficulty: "hard"
             }
         ]
     },
     multiplayer: [
+        // --- PERGUNTAS FÁCEIS (3) ---
         {
-            question: "O Pokémon Magikarp evolui para Gyarados?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual animal é conhecido como o rei da selva?",
+            correctAnswer: "O leão",
+            incorrectOptions: ["O elefante"],
             difficulty: "easy"
         },
         {
-            question: "Psyduck é um Pokémon do tipo Água?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "De que cor é o céu em um dia claro e sem nuvens?",
+            correctAnswer: "Azul",
+            incorrectOptions: ["Verde"],
             difficulty: "easy"
         },
         {
-            question: "O Pokémon Ditto pode se transformar em qualquer outro Pokémon?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Quantos dias tem uma semana?",
+            correctAnswer: "Sete",
+            incorrectOptions: ["Cinco"],
             difficulty: "easy"
         },
+    
+        // --- PERGUNTAS MÉDIAS (7) ---
         {
-            question: "Existe um Pokémon de tipo Sombrio na primeira geração?",
-            correctAnswer: "Não",
-            incorrectOptions: ["Sim"],
+            question: "Qual é o maior planeta do nosso Sistema Solar?",
+            correctAnswer: "Júpiter",
+            incorrectOptions: ["Saturno"],
             difficulty: "medium"
         },
         {
-            question: "O movimento 'Hyper Beam' é do tipo Normal?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Quantos lados tem um triângulo?",
+            correctAnswer: "Três",
+            incorrectOptions: ["Quatro"],
             difficulty: "medium"
         },
         {
-            question: "Pikachu é a forma evoluída de Pichu?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual destes NÃO é um oceano da Terra?",
+            correctAnswer: "Oceano Solitário",
+            incorrectOptions: ["Oceano Pacífico"],
             difficulty: "medium"
         },
         {
-            question: "Charizard é um Pokémon do tipo Dragão?",
-            correctAnswer: "Não",
-            incorrectOptions: ["Sim"],
+            question: "Quem pintou a Mona Lisa?",
+            correctAnswer: "Leonardo da Vinci",
+            incorrectOptions: ["Pablo Picasso"],
             difficulty: "medium"
         },
         {
-            question: "Mewtwo foi criado a partir do DNA de Mew?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual é o principal gás que compõe o ar que respiramos?",
+            correctAnswer: "Nitrogênio",
+            incorrectOptions: ["Oxigênio"],
+            difficulty: "medium"
+        },
+        {
+            question: "Qual é a capital do Brasil?",
+            correctAnswer: "Brasília",
+            incorrectOptions: ["Rio de Janeiro"],
+            difficulty: "medium"
+        },
+        {
+            question: "Em que ano o homem pisou na Lua pela primeira vez?",
+            correctAnswer: "1969",
+            incorrectOptions: ["1975"],
+            difficulty: "medium"
+        },
+    
+        // --- PERGUNTAS DIFÍCEIS (5) ---
+        {
+            question: "Qual famoso físico teórico propôs a teoria da relatividade geral?",
+            correctAnswer: "Albert Einstein",
+            incorrectOptions: ["Isaac Newton"],
             difficulty: "hard"
         },
         {
-            question: "Existem Pokémon de tipo Fada na primeira geração?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual elemento químico tem o símbolo 'Au' na tabela periódica?",
+            correctAnswer: "Ouro",
+            incorrectOptions: ["Prata"],
             difficulty: "hard"
         },
         {
-            question: "Arceus é considerado o deus do universo Pokémon?",
-            correctAnswer: "Sim",
-            incorrectOptions: ["Não"],
+            question: "Qual destas obras épicas foi escrita pelo poeta grego Homero?",
+            correctAnswer: "A Odisseia",
+            incorrectOptions: ["A Divina Comédia"],
+            difficulty: "hard"
+        },
+        {
+            question: "Qual é o nome do fenômeno astronômico em que a Lua bloqueia completamente o Sol?",
+            correctAnswer: "Eclipse solar total",
+            incorrectOptions: ["Eclipse lunar"],
+            difficulty: "hard"
+        },
+        {
+            question: "Quem foi o autor da peça de teatro 'Hamlet'?",
+            correctAnswer: "William Shakespeare",
+            incorrectOptions: ["Machado de Assis"],
             difficulty: "hard"
         }
     ]
@@ -279,13 +495,14 @@ const gameState = {
 let lastButtonAPress = 0;
 const DOUBLE_CLICK_DELAY = 500;
 
-// Variável para Pokémon selecionado
-let selectedPokemon = null;
+// Variável para controlar se o Arduino está conectado
+let arduinoConnected = false;
+
 
 // URLs das imagens dos Pokémon
 const pokemonImages = {
-    dewott: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/502.png",
-    floatzel: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/419.png"
+    dewott: "/static/images/dewot.jpeg",
+    floatzel: "/static/images/buizel.jpeg"
 };
 
 // URLs dos GIFs de pontuação
@@ -698,6 +915,7 @@ function checkAnswer(isCorrect, team = null) {
 }
 
 // Cria botão de próxima pergunta
+// Cria botão de próxima pergunta
 function createNextQuestionButton() {
     if (gameState.nextQuestionButton) {
         gameState.nextQuestionButton.remove();
@@ -708,7 +926,7 @@ function createNextQuestionButton() {
     button.textContent = 'Próxima Pergunta →';
     button.style.cssText = `
         padding: 1rem 2rem;
-        background: #ff0000;
+        background: #2e8b57;
         color: white;
         border: none;
         border-radius: 25px;
@@ -717,35 +935,38 @@ function createNextQuestionButton() {
         cursor: pointer;
         margin-top: 1rem;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     `;
     
     button.onclick = () => {
         gameState.currentQuestionIndex++;
         button.remove();
+        gameState.nextQuestionButton = null;
         showQuestion();
     };
     
     button.onmouseover = () => {
         button.style.transform = 'translateY(-2px)';
-        button.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+        button.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
+        button.style.background = '#3da76d';
     };
     
     button.onmouseout = () => {
         button.style.transform = 'none';
-        button.style.boxShadow = 'none';
+        button.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        button.style.background = '#2e8b57';
     };
     
     elements.status.appendChild(button);
     gameState.nextQuestionButton = button;
     
     // Adicionar instrução para o Arduino apenas se estiver conectado
-    if (gameState.arduinoConnected) {
+    if (arduinoConnected) {
         elements.status.innerHTML += '<p>🎮 Pressione o botão A duas vezes para próxima pergunta</p>';
     } else {
         elements.status.innerHTML += '<p>💡 Clique no botão acima ou use o mouse para continuar</p>';
     }
 }
-
 // Atualiza o placar
 function updateScores() {
     if (gameState.mode === 'singleplayer') {
@@ -975,7 +1196,7 @@ async function connectArduino() {
         await gameState.port.open({ baudRate: 9600 });
         elements.connectBtn.innerHTML = '<span>🎮 Conectado</span>';
         elements.connectBtn.disabled = true;
-        gameState.arduinoConnected = true;
+        arduinoConnected = true; // ADICIONE ESTA LINHA
         listenToArduino();
     } catch (err) {
         elements.status.textContent = "⚠️ Erro na conexão com Arduino";
@@ -1080,6 +1301,19 @@ function handleButtonPress(buttonPin) {
         if (team) {
             checkAnswer(isCorrect, team);
         }
+    }
+}
+// Função para ir para próxima pergunta (duplo clique no botão A)
+function goToNextQuestion() {
+    if (gameState.answerLock) {
+        gameState.currentQuestionIndex++;
+        
+        if (gameState.nextQuestionButton) {
+            gameState.nextQuestionButton.remove();
+            gameState.nextQuestionButton = null;
+        }
+        
+        showQuestion();
     }
 }
 
